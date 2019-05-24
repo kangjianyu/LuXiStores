@@ -1,28 +1,28 @@
-package dao
+package common
 
 import (
-	"database/sql"
 	"github.com/go-redis/redis"
 	_ "github.com/go-sql-driver/mysql"
 	log "github.com/jeanphorn/log4go"
+	"github.com/jinzhu/gorm"
 	"time"
 )
 
 var (
-	redisClient *redis.Client
-	mysqlClient *sql.DB
+	RedisClient *redis.Client
+	MysqlClient *gorm.DB
 )
 
 func Init() {
-	mysqlClient = newMysqlClient()
-	redisClient = newRedisClient()
+	MysqlClient = newMysqlClient()
+	RedisClient = newRedisClient()
 
 }
-func newMysqlClient() (mysqlClient *sql.DB) {
+func newMysqlClient() (mysqlClient *gorm.DB) {
 	const prefix = "MysqlInit "
-	dataSourceName := "root:KANG345876@qq.com@tcp(127.0.0.1:3306)/luxistores?charset=utf8"
+	dataSourceName := "root:123456@tcp(127.0.0.1:3306)/luxistores?charset=utf8&parseTime=true&loc=Local"
 	var err error
-	mysqlClient, err = sql.Open("mysql", dataSourceName)
+	mysqlClient, err = gorm.Open("mysql", dataSourceName)
 	if err != nil {
 		log.Error(prefix+"connect mysql error : dataSourceName: %s", dataSourceName)
 		panic("MysqlInit failed")

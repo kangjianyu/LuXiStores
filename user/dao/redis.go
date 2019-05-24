@@ -1,14 +1,14 @@
-package dao
+package user_dao
 
 import (
+	"LuXiStores/common"
 	log "github.com/jeanphorn/log4go"
 	"time"
 )
 
 //GetUserCookie 获取用户token
 func GetUserToken(key string) (value string, err error) {
-	client := redisClient
-	result := client.Get(key)
+	result := common.RedisClient.Get(key)
 	err = result.Err()
 	if err != nil {
 		log.Error("get cookie error:%v in redis key:%s", err, key)
@@ -21,8 +21,7 @@ func GetUserToken(key string) (value string, err error) {
 
 //SetValueByRedis 用户设置token
 func SetUserToken(key string, value string, TTl time.Duration) (valid string, err error) {
-	client := redisClient
-	result := client.Set(key, value, TTl*time.Second)
+	result := common.RedisClient.Set(key, value, TTl*time.Second)
 	err = result.Err()
 	valid = result.Val()
 	if err != nil {
@@ -35,8 +34,7 @@ func SetUserToken(key string, value string, TTl time.Duration) (valid string, er
 
 //DelUserToken 删除用户token
 func DelUserToken(key string) (valid int64, err error) {
-	client := redisClient
-	result := client.Del(key)
+	result := common.RedisClient.Del(key)
 	valid = result.Val()
 	err = result.Err()
 	if err != nil {
