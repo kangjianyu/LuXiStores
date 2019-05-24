@@ -8,7 +8,7 @@ import log "github.com/jeanphorn/log4go"
 type UserInfo struct {
 	UId        uint64    `json:"uid"`
 	UserName   string    `json:"username"`
-	PassWord   string    `json:"password"`
+	Password   string    `json:"password"`
 	Email      string    `json:"email"`
 	Gender     uint8     `json:"gender"`
 	Status     uint8     `json:"status"`
@@ -21,9 +21,9 @@ type UserInfo struct {
 func InsertUser(userinfo *UserInfo) (err error) {
 	const prefix = "InsertUser"
 	userinfo.CreateTime = time.Now()
-	_, err = insert("INSERT INTO userinfo VALUES(?,?,?,?,?,?,?,NULL)",
-		userinfo.UId, userinfo.UserName, userinfo.PassWord,
-		userinfo.Email, userinfo.Gender, userinfo.Phone, userinfo.CreateTime)
+	_, err = insert("INSERT INTO userinfo VALUES(NULL,?,?,?,?,?,?,?,NULL)",
+		userinfo.UserName, userinfo.Password,
+		userinfo.Email, userinfo.Gender, userinfo.Status, userinfo.Phone, userinfo.CreateTime)
 	if err != nil {
 		log.Error(prefix+"insertUser error: %v, : %v", err, userinfo)
 		return
@@ -33,9 +33,9 @@ func InsertUser(userinfo *UserInfo) (err error) {
 }
 
 //FetchUser 查询单个用户
-func FetchUser(userinfo *UserInfo) (ret map[string]string, err error) {
+func FetchUserByName(userinfo *UserInfo) (ret map[string]string, err error) {
 	const prefix = "FetchUser"
-	ret, err = FetchRow("SELECT uid, password, email, gender,status FROM userinfo where username=?", userinfo.UserName)
+	ret, err = FetchRow("SELECT uid, username,password, email, gender,status FROM userinfo where username=?", userinfo.UserName)
 	if err != nil {
 		log.Error(prefix+" error: %v, : %v", err, userinfo)
 		return

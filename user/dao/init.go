@@ -3,8 +3,8 @@ package dao
 import (
 	"database/sql"
 	"github.com/go-redis/redis"
-	_ "github.com/go-sql-driver/mysql"
 	log "github.com/jeanphorn/log4go"
+	_ "github.com/jinzhu/gorm/dialects/sqlite"
 	"time"
 )
 

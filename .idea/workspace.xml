@@ -1,7 +1,827 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="92a403e5-240c-40d3-97c5-26d184e190b5" name="Default Changelist" comment="" />
+    <list default="true" id="92a403e5-240c-40d3-97c5-26d184e190b5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/user/config/config.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/config/config.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/handler/exit.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/handler/token.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/handler/update.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/handler/verfiycode.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/service/captcha.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/service/user_token.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/service/userinfo.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-contrib/sse/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-contrib/sse/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-contrib/sse/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-contrib/sse/sse-decoder.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-contrib/sse/sse-encoder.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-contrib/sse/writer.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/AUTHORS.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/BENCHMARKS.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/CHANGELOG.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/CODE_OF_CONDUCT.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/CONTRIBUTING.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/auth.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/binding/binding.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/binding/default_validator.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/binding/form.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/binding/form_mapping.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/binding/json.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/binding/msgpack.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/binding/protobuf.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/binding/query.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/binding/uri.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/binding/xml.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/binding/yaml.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/codecov.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/context.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/context_appengine.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/debug.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/deprecated.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/doc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/errors.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/fs.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/gin.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/go.mod" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/go.sum" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/internal/json/json.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/internal/json/jsoniter.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/logger.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/mode.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/path.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/recovery.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/render/data.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/render/html.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/render/json.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/render/msgpack.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/render/protobuf.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/render/reader.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/render/redirect.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/render/render.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/render/text.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/render/xml.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/render/yaml.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/response_writer.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/routergroup.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/test_helpers.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/tree.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/utils.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/version.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-redis/redis/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-redis/redis/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-redis/redis/CHANGELOG.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-redis/redis/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-redis/redis/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-redis/redis/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-redis/redis/cluster.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-redis/redis/cluster_commands.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-redis/redis/command.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-redis/redis/commands.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-redis/redis/doc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-redis/redis/internal/consistenthash/consistenthash.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-redis/redis/internal/error.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-redis/redis/internal/hashtag/hashtag.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-redis/redis/internal/internal.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-redis/redis/internal/log.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-redis/redis/internal/once.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-redis/redis/internal/pool/conn.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-redis/redis/internal/pool/pool.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-redis/redis/internal/pool/pool_single.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-redis/redis/internal/pool/pool_sticky.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-redis/redis/internal/proto/reader.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-redis/redis/internal/proto/scan.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-redis/redis/internal/proto/writer.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-redis/redis/internal/util.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-redis/redis/internal/util/safe.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-redis/redis/internal/util/strconv.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-redis/redis/internal/util/unsafe.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-redis/redis/iterator.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-redis/redis/options.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-redis/redis/pipeline.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-redis/redis/pubsub.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-redis/redis/redis.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-redis/redis/result.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-redis/redis/ring.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-redis/redis/script.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-redis/redis/sentinel.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-redis/redis/tx.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-redis/redis/universal.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-sql-driver/mysql/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-sql-driver/mysql/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-sql-driver/mysql/AUTHORS" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-sql-driver/mysql/CHANGELOG.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-sql-driver/mysql/CONTRIBUTING.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-sql-driver/mysql/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-sql-driver/mysql/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-sql-driver/mysql/appengine.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-sql-driver/mysql/auth.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-sql-driver/mysql/buffer.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-sql-driver/mysql/collations.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-sql-driver/mysql/connection.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-sql-driver/mysql/connection_go18.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-sql-driver/mysql/const.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-sql-driver/mysql/driver.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-sql-driver/mysql/dsn.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-sql-driver/mysql/errors.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-sql-driver/mysql/fields.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-sql-driver/mysql/infile.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-sql-driver/mysql/packets.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-sql-driver/mysql/result.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-sql-driver/mysql/rows.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-sql-driver/mysql/statement.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-sql-driver/mysql/transaction.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-sql-driver/mysql/utils.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-sql-driver/mysql/utils_go17.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/go-sql-driver/mysql/utils_go18.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/golang/freetype/AUTHORS" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/golang/freetype/CONTRIBUTORS" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/golang/freetype/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/golang/freetype/README" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/golang/freetype/freetype.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/golang/freetype/raster/geom.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/golang/freetype/raster/paint.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/golang/freetype/raster/raster.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/golang/freetype/raster/stroke.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/golang/freetype/truetype/face.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/golang/freetype/truetype/glyph.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/golang/freetype/truetype/hint.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/golang/freetype/truetype/opcodes.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/golang/freetype/truetype/truetype.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/AUTHORS" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/CONTRIBUTORS" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/proto/clone.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/proto/decode.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/proto/deprecated.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/proto/discard.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/proto/encode.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/proto/equal.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/proto/extensions.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/proto/lib.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/proto/message_set.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/proto/pointer_reflect.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/proto/pointer_unsafe.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/proto/properties.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/proto/table_marshal.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/proto/table_merge.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/proto/table_unmarshal.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/proto/text.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/golang/protobuf/proto/text_parser.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/hashicorp/go-uuid/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/hashicorp/go-uuid/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/hashicorp/go-uuid/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/hashicorp/go-uuid/go.mod" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/hashicorp/go-uuid/uuid.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jeanphorn/log4go/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jeanphorn/log4go/category.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jeanphorn/log4go/filelog.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jeanphorn/log4go/jsonconfig.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jeanphorn/log4go/log4go.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jeanphorn/log4go/pattlog.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jeanphorn/log4go/socklog.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jeanphorn/log4go/termlog.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jeanphorn/log4go/wrapper.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jeanphorn/log4go/xmlconfig.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/License" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/association.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/callback.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/callback_create.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/callback_delete.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/callback_query.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/callback_query_preload.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/callback_row_query.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/callback_save.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/callback_update.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/dialect.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/dialect_common.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/dialect_mysql.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/dialect_postgres.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/dialect_sqlite3.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/dialects/mysql/mysql.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/dialects/sqlite/sqlite.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/errors.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/field.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/go.mod" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/go.sum" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/interface.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/join_table_handler.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/logger.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/model.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/model_struct.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/naming.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/scope.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/search.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/test_all.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/utils.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/wercker.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jinzhu/inflection/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jinzhu/inflection/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jinzhu/inflection/inflections.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/jinzhu/inflection/wercker.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/.codecov.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/Gopkg.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/Gopkg.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/adapter.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/any.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/any_array.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/any_bool.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/any_float.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/any_int32.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/any_int64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/any_invalid.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/any_nil.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/any_number.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/any_object.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/any_str.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/any_uint32.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/any_uint64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/build.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/config.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/fuzzy_mode_convert_table.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/iter.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/iter_array.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/iter_float.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/iter_int.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/iter_object.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/iter_skip.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/iter_skip_sloppy.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/iter_skip_strict.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/iter_str.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/jsoniter.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/pool.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/reflect.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/reflect_array.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/reflect_dynamic.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/reflect_extension.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/reflect_json_number.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/reflect_json_raw_message.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/reflect_map.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/reflect_marshaler.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/reflect_native.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/reflect_optional.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/reflect_slice.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/reflect_struct_decoder.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/reflect_struct_encoder.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/stream.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/stream_float.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/stream_int.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/stream_str.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/json-iterator/go/test.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-isatty/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-isatty/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-isatty/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-isatty/doc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-isatty/go.mod" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-isatty/go.sum" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-isatty/isatty_android.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-isatty/isatty_bsd.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-isatty/isatty_linux.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-isatty/isatty_others.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-isatty/isatty_solaris.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-isatty/isatty_windows.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/backup.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/callback.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/doc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/error.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/sqlite3-binding.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/sqlite3-binding.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/sqlite3.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/sqlite3_context.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/sqlite3_func_crypt.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/sqlite3_go18.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/sqlite3_libsqlite3.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/sqlite3_load_extension.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/sqlite3_load_extension_omit.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/sqlite3_opt_allow_uri_authority.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/sqlite3_opt_app_armor.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/sqlite3_opt_foreign_keys.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/sqlite3_opt_fts5.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/sqlite3_opt_icu.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/sqlite3_opt_introspect.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/sqlite3_opt_json1.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/sqlite3_opt_secure_delete.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/sqlite3_opt_secure_delete_fast.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/sqlite3_opt_stat4.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/sqlite3_opt_unlock_notify.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/sqlite3_opt_unlock_notify.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/sqlite3_opt_userauth.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/sqlite3_opt_userauth_omit.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/sqlite3_opt_vacuum_full.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/sqlite3_opt_vacuum_incr.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/sqlite3_opt_vtable.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/sqlite3_other.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/sqlite3_solaris.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/sqlite3_trace.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/sqlite3_type.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/sqlite3_usleep_windows.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/sqlite3_windows.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/sqlite3ext.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/static_mock.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/concurrent/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/concurrent/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/concurrent/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/concurrent/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/concurrent/executor.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/concurrent/go_above_19.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/concurrent/go_below_19.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/concurrent/log.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/concurrent/test.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/concurrent/unbounded_executor.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/reflect2/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/reflect2/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/reflect2/Gopkg.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/reflect2/Gopkg.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/reflect2/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/reflect2/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/reflect2/go_above_17.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/reflect2/go_above_19.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/reflect2/go_below_17.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/reflect2/go_below_19.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/reflect2/reflect2.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/reflect2/reflect2_amd64.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/reflect2/reflect2_kind.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/reflect2/relfect2_386.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/reflect2/relfect2_amd64p32.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/reflect2/relfect2_arm.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/reflect2/relfect2_arm64.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/reflect2/relfect2_mips64x.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/reflect2/relfect2_mipsx.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/reflect2/relfect2_ppc64x.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/reflect2/relfect2_s390x.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/reflect2/safe_field.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/reflect2/safe_map.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/reflect2/safe_slice.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/reflect2/safe_struct.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/reflect2/safe_type.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/reflect2/test.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/reflect2/type_map.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/reflect2/unsafe_array.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/reflect2/unsafe_eface.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/reflect2/unsafe_field.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/reflect2/unsafe_iface.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/reflect2/unsafe_link.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/reflect2/unsafe_map.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/reflect2/unsafe_ptr.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/reflect2/unsafe_slice.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/reflect2/unsafe_struct.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/modern-go/reflect2/unsafe_type.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mojocn/base64Captcha/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mojocn/base64Captcha/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mojocn/base64Captcha/CODE_OF_CONDUCT.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mojocn/base64Captcha/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mojocn/base64Captcha/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mojocn/base64Captcha/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mojocn/base64Captcha/README_zh.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mojocn/base64Captcha/_config.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mojocn/base64Captcha/captcha.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mojocn/base64Captcha/const.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mojocn/base64Captcha/deploy.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mojocn/base64Captcha/engineAudio.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mojocn/base64Captcha/engineImageChar.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mojocn/base64Captcha/engineImageDigit.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mojocn/base64Captcha/firewall.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mojocn/base64Captcha/fontBinData.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mojocn/base64Captcha/fonts.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mojocn/base64Captcha/go.mod" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mojocn/base64Captcha/go.sum" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mojocn/base64Captcha/randomCrypto.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mojocn/base64Captcha/randomMath.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mojocn/base64Captcha/siprng.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mojocn/base64Captcha/sounds.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mojocn/base64Captcha/store/interface.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mojocn/base64Captcha/store/memory.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/mojocn/base64Captcha/store/redis.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/.dockerignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/CONTRIBUTING.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/PULL_REQUEST_TEMPLATE.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/appveyor.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/benchmark.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/benchmark.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/benchmark.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/benchmark.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/doc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/example-crlf.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/example.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/fuzz.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/fuzz.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/go.mod" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/go.sum" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/keysparsing.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/lexer.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/marshal.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/marshal_OrderPreserve_Map_test.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/marshal_OrderPreserve_test.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/marshal_test.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/parser.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/position.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/token.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/toml.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/tomltree_create.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/pelletier/go-toml/tomltree_write.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/toolkits/file/downloader.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/toolkits/file/file.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/toolkits/file/reader.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/toolkits/file/writer.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/0_importpath.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/0doc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/binc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/build.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/cbor.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/codecgen.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/decode.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/encode.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/fast-path.generated.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/fast-path.go.tmpl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/fast-path.not.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/gen-dec-array.go.tmpl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/gen-dec-map.go.tmpl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/gen-enc-chan.go.tmpl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/gen-helper.generated.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/gen-helper.go.tmpl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/gen.generated.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/gen.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/goversion_arrayof_gte_go15.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/goversion_arrayof_lt_go15.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/goversion_makemap_gte_go19.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/goversion_makemap_lt_go19.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/goversion_unexportedembeddedptr_gte_go110.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/goversion_unexportedembeddedptr_lt_go110.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/goversion_unsupported_lt_go14.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/goversion_vendor_eq_go15.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/goversion_vendor_eq_go16.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/goversion_vendor_gte_go17.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/goversion_vendor_lt_go15.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/helper.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/helper_internal.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/helper_not_unsafe.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/helper_unsafe.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/json.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/mammoth-test.go.tmpl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/mammoth2-test.go.tmpl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/msgpack.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/rpc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/simple.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/test-cbor-goldens.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/github.com/ugorji/go/codec/xml.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/image/AUTHORS" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/image/CONTRIBUTORS" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/image/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/image/PATENTS" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/image/font/font.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/image/math/fixed/fixed.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/AUTHORS" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/CONTRIBUTORS" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/PATENTS" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/affinity_linux.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/aliases.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_aix_ppc64.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_darwin_386.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_darwin_amd64.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_darwin_arm.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_darwin_arm64.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_dragonfly_amd64.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_freebsd_386.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_freebsd_amd64.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_freebsd_arm.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_freebsd_arm64.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_linux_386.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_linux_amd64.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_linux_arm.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_linux_arm64.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_linux_mips64x.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_linux_mipsx.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_linux_ppc64x.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_linux_s390x.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_netbsd_386.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_netbsd_amd64.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_netbsd_arm.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_netbsd_arm64.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_openbsd_386.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_openbsd_amd64.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_openbsd_arm.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/asm_solaris_amd64.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/bluetooth_linux.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/cap_freebsd.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/constants.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/dev_aix_ppc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/dev_aix_ppc64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/dev_darwin.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/dev_dragonfly.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/dev_freebsd.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/dev_linux.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/dev_netbsd.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/dev_openbsd.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/dirent.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/endian_big.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/endian_little.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/env_unix.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/errors_freebsd_386.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/errors_freebsd_amd64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/errors_freebsd_arm.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/fcntl.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/fcntl_darwin.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/fcntl_linux_32bit.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/gccgo.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/gccgo_c.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/gccgo_linux_amd64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ioctl.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/mkall.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/mkasm_darwin.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/mkerrors.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/mkpost.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/mksyscall.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/mksyscall_aix_ppc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/mksyscall_aix_ppc64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/mksyscall_solaris.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/mksysctl_openbsd.pl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/mksysnum.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/openbsd_pledge.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/openbsd_unveil.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/pagesize_unix.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/race.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/race0.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/sockcmsg_linux.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/sockcmsg_unix.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/str.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_aix.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_aix_ppc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_aix_ppc64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_bsd.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_darwin.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_darwin_386.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_darwin_amd64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_darwin_arm.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_darwin_arm64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_darwin_libSystem.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_dragonfly.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_dragonfly_amd64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_freebsd.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_freebsd_386.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_freebsd_amd64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_freebsd_arm.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_freebsd_arm64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_linux.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_linux_386.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_linux_amd64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_linux_amd64_gc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_linux_arm.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_linux_arm64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_linux_gc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_linux_gc_386.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_linux_gccgo_386.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_linux_gccgo_arm.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_linux_mips64x.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_linux_mipsx.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_linux_ppc64x.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_linux_riscv64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_linux_s390x.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_linux_sparc64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_netbsd.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_netbsd_386.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_netbsd_amd64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_netbsd_arm.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_netbsd_arm64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_openbsd.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_openbsd_386.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_openbsd_amd64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_openbsd_arm.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_solaris.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_solaris_amd64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_unix.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_unix_gc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/syscall_unix_gc_ppc64x.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/timestruct.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/types_aix.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/types_darwin.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/types_dragonfly.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/types_freebsd.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/types_netbsd.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/types_openbsd.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/types_solaris.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/xattr_bsd.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_aix_ppc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_aix_ppc64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_darwin_386.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_darwin_amd64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_darwin_arm.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_darwin_arm64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_dragonfly_amd64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_freebsd_386.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_freebsd_amd64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_freebsd_arm.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_freebsd_arm64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_linux_386.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_linux_amd64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_linux_arm.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_linux_arm64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_linux_mips.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_linux_mips64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_linux_mips64le.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_linux_mipsle.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_linux_ppc64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_linux_ppc64le.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_linux_riscv64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_linux_s390x.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_linux_sparc64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_netbsd_386.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_netbsd_amd64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_netbsd_arm.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_netbsd_arm64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_openbsd_386.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_openbsd_amd64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_openbsd_arm.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zerrors_solaris_amd64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zptrace386_linux.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zptracearm_linux.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zptracemips_linux.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zptracemipsle_linux.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_aix_ppc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_aix_ppc64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_aix_ppc64_gc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_aix_ppc64_gccgo.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_darwin_386.1_11.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_darwin_386.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_darwin_386.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_darwin_amd64.1_11.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_darwin_amd64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_darwin_amd64.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_darwin_arm.1_11.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_darwin_arm.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_darwin_arm.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_darwin_arm64.1_11.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_darwin_arm64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_darwin_arm64.s" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_dragonfly_amd64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_freebsd_386.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_freebsd_amd64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_freebsd_arm.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_freebsd_arm64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_linux_386.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_linux_amd64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_linux_arm.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_linux_arm64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_linux_mips.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_linux_mips64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_linux_mips64le.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_linux_mipsle.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_linux_ppc64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_linux_ppc64le.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_linux_riscv64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_linux_s390x.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_linux_sparc64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_netbsd_386.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_netbsd_amd64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_netbsd_arm.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_netbsd_arm64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_openbsd_386.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_openbsd_amd64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_openbsd_arm.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsyscall_solaris_amd64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysctl_openbsd_386.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysctl_openbsd_amd64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysctl_openbsd_arm.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_darwin_386.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_darwin_amd64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_darwin_arm.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_darwin_arm64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_dragonfly_amd64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_freebsd_386.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_freebsd_amd64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_freebsd_arm.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_freebsd_arm64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_linux_386.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_linux_amd64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_linux_arm.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_linux_arm64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_linux_mips.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_linux_mips64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_linux_mips64le.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_linux_mipsle.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_linux_ppc64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_linux_ppc64le.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_linux_riscv64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_linux_s390x.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_linux_sparc64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_netbsd_386.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_netbsd_amd64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_netbsd_arm.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_netbsd_arm64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_openbsd_386.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_openbsd_amd64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/zsysnum_openbsd_arm.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_aix_ppc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_aix_ppc64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_darwin_386.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_darwin_amd64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_darwin_arm.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_darwin_arm64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_dragonfly_amd64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_freebsd_386.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_freebsd_amd64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_freebsd_arm.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_freebsd_arm64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_linux_386.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_linux_amd64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_linux_arm.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_linux_arm64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_linux_mips.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_linux_mips64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_linux_mips64le.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_linux_mipsle.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_linux_ppc64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_linux_ppc64le.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_linux_riscv64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_linux_s390x.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_linux_sparc64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_netbsd_386.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_netbsd_amd64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_netbsd_arm.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_netbsd_arm64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_openbsd_386.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_openbsd_amd64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_openbsd_arm.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/golang.org/x/sys/unix/ztypes_solaris_amd64.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/google.golang.org/appengine/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/google.golang.org/appengine/cloudsql/cloudsql.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/google.golang.org/appengine/cloudsql/cloudsql_classic.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/google.golang.org/appengine/cloudsql/cloudsql_vm.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gopkg.in/go-playground/validator.v8/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gopkg.in/go-playground/validator.v8/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gopkg.in/go-playground/validator.v8/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gopkg.in/go-playground/validator.v8/baked_in.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gopkg.in/go-playground/validator.v8/cache.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gopkg.in/go-playground/validator.v8/doc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gopkg.in/go-playground/validator.v8/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gopkg.in/go-playground/validator.v8/regexes.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gopkg.in/go-playground/validator.v8/util.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gopkg.in/go-playground/validator.v8/validator.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gopkg.in/yaml.v2/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gopkg.in/yaml.v2/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gopkg.in/yaml.v2/LICENSE.libyaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gopkg.in/yaml.v2/NOTICE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gopkg.in/yaml.v2/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gopkg.in/yaml.v2/apic.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gopkg.in/yaml.v2/decode.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gopkg.in/yaml.v2/emitterc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gopkg.in/yaml.v2/encode.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gopkg.in/yaml.v2/go.mod" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gopkg.in/yaml.v2/parserc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gopkg.in/yaml.v2/readerc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gopkg.in/yaml.v2/resolve.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gopkg.in/yaml.v2/scannerc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gopkg.in/yaml.v2/sorter.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gopkg.in/yaml.v2/writerc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gopkg.in/yaml.v2/yaml.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gopkg.in/yaml.v2/yamlh.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/gopkg.in/yaml.v2/yamlprivateh.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/modules.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/dao/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/user/dao/init.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/dao/init_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/user/dao/init_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/dao/mysql_curd_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/user/dao/mysql_curd_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/dao/mysql_opt.go" beforeDir="false" afterPath="$PROJECT_DIR$/user/dao/mysql_opt.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/dao/mysql_opt_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/user/dao/mysql_opt_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/dao/redis_opt.go" beforeDir="false" afterPath="$PROJECT_DIR$/user/dao/redis_opt.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/dao/redis_opt_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/user/dao/redis_opt_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/handler/login.go" beforeDir="false" afterPath="$PROJECT_DIR$/user/handler/login.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/handler/signup.go" beforeDir="false" afterPath="$PROJECT_DIR$/user/handler/signup.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/service/get_userinfo.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/service/user_cookie.go" beforeDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -10,68 +830,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/user/service/get_userinfo.go">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/user/dao/init_test.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="87">
-              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+            <state relative-caret-position="315">
+              <caret line="21" column="25" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
               <folding>
-                <element signature="e#17#61#0" expanded="true" />
+                <element signature="e#13#60#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/user/handler/signup.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" selection-start-line="4" selection-end-line="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/user/handler/login.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="327">
-              <caret line="43" column="10" lean-forward="true" selection-start-line="43" selection-start-column="10" selection-end-line="43" selection-end-column="10" />
-              <folding>
-                <element signature="e#17#89#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/user/service/user_cookie.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="267">
-              <caret line="18" column="48" selection-start-line="18" selection-start-column="48" selection-end-line="18" selection-end-column="48" />
-              <folding>
-                <element signature="e#17#93#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/user/dao/redis_opt.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="10" lean-forward="true" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
-              <folding>
-                <element signature="e#13#73#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/user/dao/redis_opt_test.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -79,23 +845,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/user/dao/mysql_opt.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="434">
-              <caret line="45" column="27" lean-forward="true" selection-start-line="45" selection-start-column="27" selection-end-line="45" selection-end-column="27" />
+            <state relative-caret-position="360">
+              <caret line="24" column="41" selection-start-line="24" selection-start-column="41" selection-end-line="24" selection-end-column="41" />
               <folding>
-                <element signature="e#13#67#0" expanded="true" />
+                <element signature="e#13#72#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/main.go">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/user/dao/mysql_opt_test.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-151">
-              <caret line="25" column="6" lean-forward="true" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="6" />
-              <folding>
-                <element signature="e#14#64#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="240">
+              <caret line="20" column="45" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/user/dao/mysql_curd_test.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
             </state>
           </provider>
         </entry>
@@ -103,7 +875,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/user/dao/mysql_curd.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
+            <state relative-caret-position="75">
               <caret line="8" column="36" lean-forward="true" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
               <folding>
                 <element signature="e#13#74#0" expanded="true" />
@@ -115,8 +887,47 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/user/dao/init.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="23" selection-start-line="23" selection-end-line="23" />
+            <state relative-caret-position="285">
+              <caret line="19" column="1" lean-forward="true" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
+              <folding>
+                <element signature="e#13#181#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/main.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="277">
+              <caret line="69" column="33" selection-start-line="69" selection-start-column="33" selection-end-line="69" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/dialect.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="18">
+              <caret line="61" column="25" selection-start-line="61" selection-start-column="25" selection-end-line="61" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/dialects/sqlite/sqlite.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" column="31" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/sqlite3.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="173">
+              <caret line="224" column="38" selection-start-line="224" selection-start-column="38" selection-end-line="224" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -134,38 +945,42 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GoLibraries">
+    <option name="useGoPathFromSystemEnvironment" value="false" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/gin/main.go" />
         <option value="$PROJECT_DIR$/user/dao/login.go" />
-        <option value="$PROJECT_DIR$/user/dao/init_test.go" />
-        <option value="$PROJECT_DIR$/user/dao/mysql_curd_test.go" />
-        <option value="$PROJECT_DIR$/user/dao/mysql_opt_test.go" />
         <option value="$PROJECT_DIR$/user/dao/mysql_curd.go" />
-        <option value="$PROJECT_DIR$/user/service/get_userinfo.go" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/generateuuid.go" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.go" />
-        <option value="$PROJECT_DIR$/user/handler/signup.go" />
         <option value="$PROJECT_DIR$/user/service/set_cookie.go" />
-        <option value="$PROJECT_DIR$/user/dao/init.go" />
-        <option value="$PROJECT_DIR$/user/dao/redis_opt.go" />
-        <option value="$PROJECT_DIR$/user/dao/redis_opt_test.go" />
+        <option value="$PROJECT_DIR$/user/service/get_userinfo.go" />
+        <option value="$PROJECT_DIR$/user/dao/mysql_curd_test.go" />
+        <option value="$PROJECT_DIR$/user/handler/update.go" />
+        <option value="$PROJECT_DIR$/user/handler/token.go" />
         <option value="$PROJECT_DIR$/user/service/user_cookie.go" />
-        <option value="$PROJECT_DIR$/user/handler/login.go" />
-        <option value="$PROJECT_DIR$/user/dao/mysql_opt.go" />
+        <option value="$APPLICATION_CONFIG_DIR$/scratches/random.go" />
+        <option value="$PROJECT_DIR$/user/service/user_token.go" />
+        <option value="$PROJECT_DIR$/user/handler/exit.go" />
+        <option value="$PROJECT_DIR$/user/service/captcha.go" />
+        <option value="$PROJECT_DIR$/user/dao/redis_opt_test.go" />
+        <option value="$PROJECT_DIR$/user/dao/redis_opt.go" />
+        <option value="$PROJECT_DIR$/user/handler/verfiycode.go" />
         <option value="$PROJECT_DIR$/main.go" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectConfigurationFiles">
-    <option name="files">
-      <list>
-        <option value="$PROJECT_DIR$/.idea/LuXiStores.iml" />
-        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
-        <option value="$PROJECT_DIR$/.idea/misc.xml" />
-        <option value="$PROJECT_DIR$/.idea/modules.xml" />
-        <option value="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
+        <option value="$PROJECT_DIR$/user/service/userinfo.go" />
+        <option value="$PROJECT_DIR$/user/config.go" />
+        <option value="$PROJECT_DIR$/user/handler/signup.go" />
+        <option value="$PROJECT_DIR$/user/config/config" />
+        <option value="$PROJECT_DIR$/user/handler/login.go" />
+        <option value="$PROJECT_DIR$/user/config/config.toml" />
+        <option value="$PROJECT_DIR$/user/config/config.go" />
+        <option value="$PROJECT_DIR$/user/dao/init.go" />
+        <option value="$PROJECT_DIR$/user/dao/mysql_opt.go" />
+        <option value="$PROJECT_DIR$/user/dao/mysql_opt_test.go" />
+        <option value="$PROJECT_DIR$/user/dao/init_test.go" />
       </list>
     </option>
   </component>
@@ -194,19 +1009,17 @@
               <item name="LuXiStores" type="b2602c69:ProjectViewProjectNode" />
               <item name="LuXiStores" type="462c0819:PsiDirectoryNode" />
               <item name="user" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LuXiStores" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LuXiStores" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
               <item name="dao" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="LuXiStores" type="b2602c69:ProjectViewProjectNode" />
-              <item name="LuXiStores" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
-              <item name="handler" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="LuXiStores" type="b2602c69:ProjectViewProjectNode" />
-              <item name="LuXiStores" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
             <path>
               <item name="LuXiStores" type="b2602c69:ProjectViewProjectNode" />
@@ -222,11 +1035,16 @@
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="GO_FMT" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="configurable.Global.GOPATH.is.expanded" value="true" />
+    <property name="configurable.Module.GOPATH.is.expanded" value="true" />
+    <property name="configurable.Project.GOPATH.is.expanded" value="true" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
+    <property name="go.vendoring.notification.had.been.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -234,6 +1052,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/user/config" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -249,7 +1068,16 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Build.go build main.go (1)">
+  <component name="RunManager" selected="Go Test.TestFetchRow in LuXiStores/user/dao">
+    <configuration name="go build config.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="LuXiStores" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/user/config/config.go" />
+      <package value="LuXiStores" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
     <configuration name="go build main.go (1)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="LuXiStores" />
       <working_directory value="$PROJECT_DIR$" />
@@ -259,7 +1087,7 @@
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
-    <configuration name="TestFetchUser in LuXiStores/user/dao" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestDelUserToken in LuXiStores/user/dao" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="LuXiStores" />
       <working_directory value="$PROJECT_DIR$/user/dao" />
       <framework value="gotest" />
@@ -267,10 +1095,10 @@
       <package value="LuXiStores/user/dao" />
       <directory value="$PROJECT_DIR$/" />
       <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^TestFetchUser$" />
+      <pattern value="^TestDelUserToken$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestGetUserCookie in LuXiStores/user/dao" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestFetchRow in LuXiStores/user/dao" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="LuXiStores" />
       <working_directory value="$PROJECT_DIR$/user/dao" />
       <framework value="gotest" />
@@ -278,18 +1106,7 @@
       <package value="LuXiStores/user/dao" />
       <directory value="$PROJECT_DIR$/" />
       <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^TestGetUserCookie$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="TestInsertUser in LuXiStores/user/dao" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="LuXiStores" />
-      <working_directory value="$PROJECT_DIR$/user/dao" />
-      <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="LuXiStores/user/dao" />
-      <directory value="$PROJECT_DIR$/" />
-      <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^TestInsertUser$" />
+      <pattern value="^TestFetchRow$" />
       <method v="2" />
     </configuration>
     <configuration name="TestSetUserCookie in LuXiStores/user/dao" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -305,44 +1122,44 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestFetchRow in LuXiStores/user/dao" />
+        <item itemvalue="Go Build.go build config.go" />
         <item itemvalue="Go Build.go build main.go (1)" />
-        <item itemvalue="Go Test.TestGetUserCookie in LuXiStores/user/dao" />
         <item itemvalue="Go Test.TestSetUserCookie in LuXiStores/user/dao" />
-        <item itemvalue="Go Test.TestFetchUser in LuXiStores/user/dao" />
-        <item itemvalue="Go Test.TestInsertUser in LuXiStores/user/dao" />
+        <item itemvalue="Go Test.TestDelUserToken in LuXiStores/user/dao" />
       </list>
     </recent_temporary>
   </component>
   <component name="TestHistory">
-    <history-entry file="TestGetUserCookie_in_LuXiStores_user_dao - 2019.05.22 at 19h 49m 47s.xml">
-      <configuration name="TestGetUserCookie in LuXiStores/user/dao" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestFetchRow_in_LuXiStores_user_dao - 2019.05.24 at 20h 38m 14s.xml">
+      <configuration name="TestFetchRow in LuXiStores/user/dao" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestGetUserCookie_in_LuXiStores_user_dao - 2019.05.22 at 19h 50m 27s.xml">
-      <configuration name="TestGetUserCookie in LuXiStores/user/dao" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestFetchRow_in_LuXiStores_user_dao - 2019.05.24 at 20h 39m 53s.xml">
+      <configuration name="TestFetchRow in LuXiStores/user/dao" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestGetUserCookie_in_LuXiStores_user_dao - 2019.05.22 at 21h 08m 38s.xml">
-      <configuration name="TestGetUserCookie in LuXiStores/user/dao" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestFetchRow_in_LuXiStores_user_dao - 2019.05.24 at 20h 40m 41s.xml">
+      <configuration name="TestFetchRow in LuXiStores/user/dao" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestGetUserCookie_in_LuXiStores_user_dao - 2019.05.22 at 21h 08m 52s.xml">
-      <configuration name="TestGetUserCookie in LuXiStores/user/dao" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestFetchRow_in_LuXiStores_user_dao - 2019.05.24 at 20h 43m 04s.xml">
+      <configuration name="TestFetchRow in LuXiStores/user/dao" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestGetUserCookie_in_LuXiStores_user_dao - 2019.05.22 at 21h 09m 03s.xml">
-      <configuration name="TestGetUserCookie in LuXiStores/user/dao" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestFetchRow_in_LuXiStores_user_dao - 2019.05.24 at 20h 43m 21s.xml">
+      <configuration name="TestFetchRow in LuXiStores/user/dao" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestGetUserCookie_in_LuXiStores_user_dao - 2019.05.22 at 21h 09m 16s.xml">
-      <configuration name="TestGetUserCookie in LuXiStores/user/dao" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestFetchRow_in_LuXiStores_user_dao - 2019.05.24 at 20h 44m 01s.xml">
+      <configuration name="TestFetchRow in LuXiStores/user/dao" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestGetUserCookie_in_LuXiStores_user_dao - 2019.05.22 at 21h 10m 29s.xml">
-      <configuration name="TestGetUserCookie in LuXiStores/user/dao" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestFetchRow_in_LuXiStores_user_dao - 2019.05.24 at 20h 44m 14s.xml">
+      <configuration name="TestFetchRow in LuXiStores/user/dao" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestGetUserCookie_in_LuXiStores_user_dao - 2019.05.22 at 21h 11m 17s.xml">
-      <configuration name="TestGetUserCookie in LuXiStores/user/dao" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestFetchRow_in_LuXiStores_user_dao - 2019.05.24 at 20h 46m 01s.xml">
+      <configuration name="TestFetchRow in LuXiStores/user/dao" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestGetUserCookie_in_LuXiStores_user_dao - 2019.05.22 at 21h 12m 02s.xml">
-      <configuration name="TestGetUserCookie in LuXiStores/user/dao" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestFetchRow_in_LuXiStores_user_dao - 2019.05.24 at 20h 46m 52s.xml">
+      <configuration name="TestFetchRow in LuXiStores/user/dao" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestGetUserCookie_in_LuXiStores_user_dao - 2019.05.22 at 21h 14m 34s.xml">
-      <configuration name="TestGetUserCookie in LuXiStores/user/dao" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestFetchRow_in_LuXiStores_user_dao - 2019.05.24 at 20h 50m 21s.xml">
+      <configuration name="TestFetchRow in LuXiStores/user/dao" configurationId="GoTestRunConfiguration" />
     </history-entry>
   </component>
   <component name="TodoView">
@@ -356,23 +1173,22 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24964234" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Terminal" weight="0.32891566" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" weight="0.32891566" />
+      <window_info anchor="bottom" id="Terminal" sideWeight="0.49928468" weight="0.32891566" />
+      <window_info anchor="bottom" id="Event Log" sideWeight="0.50143063" side_tool="true" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32891566" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4985694" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32891566" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49928468" weight="0.32891566" />
       <window_info anchor="right" id="Database" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -382,8 +1198,16 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.toml" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="&quot;第一版&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="&quot;第一版&quot;" />
+  </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
+    <vendoring-mode>true</vendoring-mode>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/README.md">
@@ -391,13 +1215,6 @@
         <state split_layout="SPLIT">
           <first_editor />
           <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/go.mod">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -429,23 +1246,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="362">
           <caret line="829" selection-start-line="829" selection-end-line="829" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user/dao/init_test.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="10" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user/dao/mysql_curd_test.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" selection-start-line="9" selection-end-line="10" />
-          <folding>
-            <element signature="e#13#42#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -497,19 +1297,218 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/user/dao/mysql_opt_test.go">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/random.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
+          <folding>
+            <element signature="e#14#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/github.com/mojocn/base64Captcha/const.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="35" column="4" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user/dao/redis_opt_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="13" column="21" lean-forward="true" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user/handler/update.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/github.com/mojocn/base64Captcha/store/interface.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
-          <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+          <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/github.com/mojocn/base64Captcha/captcha.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="113" column="32" selection-start-line="113" selection-start-column="32" selection-end-line="113" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/go.sum">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user/handler/exit.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="25" column="33" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="18" column="40" lean-forward="true" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
           <folding>
-            <element signature="e#13#41#0" expanded="true" />
+            <element signature="e#14#153#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user/service/user_token.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-48">
+          <caret line="8" column="14" lean-forward="true" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
+          <folding>
+            <element signature="e#17#93#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user/service/captcha.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="471">
+          <caret line="43" column="1" selection-start-line="43" selection-start-column="1" selection-end-line="43" selection-end-column="1" />
+          <folding>
+            <element signature="e#17#70#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user/handler/verfiycode.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="26" column="1" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user/handler/token.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="15" selection-start-column="15" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user/service/userinfo.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user/dao/redis_opt.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="24" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
+          <folding>
+            <element signature="e#13#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user/handler/signup.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="59" column="10" selection-start-line="59" selection-start-column="10" selection-end-line="59" selection-end-column="10" />
+          <folding>
+            <element signature="e#17#82#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user/handler/login.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user/config/config.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="42" selection-start-line="20" selection-start-column="42" selection-end-line="20" selection-end-column="42" />
+          <folding>
+            <element signature="e#16#71#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/go.mod">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user/config/config.toml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/dialects/sqlite/sqlite.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="31" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/github.com/mattn/go-sqlite3/sqlite3.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="224" column="38" selection-start-line="224" selection-start-column="38" selection-end-line="224" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/dialect.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="61" column="25" selection-start-line="61" selection-start-column="25" selection-end-line="61" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="69" column="33" selection-start-line="69" selection-start-column="33" selection-end-line="69" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user/dao/mysql_opt.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="41" selection-start-line="24" selection-start-column="41" selection-end-line="24" selection-end-column="41" />
+          <folding>
+            <element signature="e#13#72#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user/dao/mysql_opt_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="20" column="45" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user/dao/mysql_curd_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/user/dao/mysql_curd.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
+        <state relative-caret-position="75">
           <caret line="8" column="36" lean-forward="true" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
           <folding>
             <element signature="e#13#74#0" expanded="true" />
@@ -519,81 +1518,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/user/dao/init.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user/dao/redis_opt_test.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user/service/get_userinfo.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="87">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        <state relative-caret-position="285">
+          <caret line="19" column="1" lean-forward="true" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
           <folding>
-            <element signature="e#17#61#0" expanded="true" />
+            <element signature="e#13#181#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/user/dao/mysql_opt.go">
+    <entry file="file://$PROJECT_DIR$/user/dao/init_test.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="45" column="27" lean-forward="true" selection-start-line="45" selection-start-column="27" selection-end-line="45" selection-end-column="27" />
+        <state relative-caret-position="315">
+          <caret line="21" column="25" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
           <folding>
-            <element signature="e#13#67#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user/dao/redis_opt.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="10" lean-forward="true" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
-          <folding>
-            <element signature="e#13#73#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user/handler/signup.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user/service/user_cookie.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="18" column="48" selection-start-line="18" selection-start-column="48" selection-end-line="18" selection-end-column="48" />
-          <folding>
-            <element signature="e#17#93#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user/handler/login.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="43" column="10" lean-forward="true" selection-start-line="43" selection-start-column="10" selection-end-line="43" selection-end-column="10" />
-          <folding>
-            <element signature="e#17#89#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-151">
-          <caret line="25" column="6" lean-forward="true" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="6" />
-          <folding>
-            <element signature="e#14#64#0" expanded="true" />
+            <element signature="e#13#60#0" expanded="true" />
           </folding>
         </state>
       </provider>
