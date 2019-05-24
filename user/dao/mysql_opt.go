@@ -8,7 +8,7 @@ import log "github.com/jeanphorn/log4go"
 type UserInfo struct {
 	UId        uint64    `json:"uid"`
 	UserName   string    `json:"username"`
-	Password   string    `json:"password"`
+	PassWord   string    `json:"password"`
 	Email      string    `json:"email"`
 	Gender     uint8     `json:"gender"`
 	Status     uint8     `json:"status"`
@@ -20,10 +20,9 @@ type UserInfo struct {
 //InsertUser 注册用户
 func InsertUser(userinfo *UserInfo) (err error) {
 	const prefix = "InsertUser"
-	userinfo.CreateTime = time.Now()
-	_, err = insert("INSERT INTO userinfo VALUES(NULL,?,?,?,?,?,?,?,NULL)",
-		userinfo.UserName, userinfo.Password,
-		userinfo.Email, userinfo.Gender, userinfo.Status, userinfo.Phone, userinfo.CreateTime)
+	_, err = insert("INSERT INTO userinfo VALUES(NULL,?,?,?,?,?,?,NULL,NULL)",
+		userinfo.UserName, userinfo.PassWord,
+		userinfo.Email, userinfo.Gender, userinfo.Status, userinfo.Phone)
 	if err != nil {
 		log.Error(prefix+"insertUser error: %v, : %v", err, userinfo)
 		return
