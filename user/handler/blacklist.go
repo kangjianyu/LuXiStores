@@ -15,9 +15,9 @@ type Body struct {
 }
 func BlackListAdd(c *gin.Context){
 	key := "blacklist"
-	data,_ := ioutil.ReadAll(c.Request.Body)
+	data,err := ioutil.ReadAll(c.Request.Body)
 	body := new(Body)
-	err := json.Unmarshal(data,&body)
+	err = json.Unmarshal(data,&body)
 	if err!=nil{
 		common.BuildResp(c,nil,common.ErrParam)
 		log.Warn("uids==[]",body.Uids)

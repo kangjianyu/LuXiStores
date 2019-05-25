@@ -17,6 +17,8 @@ func main() {
 	r.POST("/blacklist/add",user_handler.BlackListAdd)
 	r.POST("/blacklist/del",user_handler.BlackListDel)
 	r.GET("/blacklist/check",user_handler.BlackListCheck)
+	r.GET("/user_profile/user_info",user_handler.GetProfile)
+	r.POST("/user_profile/update",user_handler.UpdateProfile)
 	//r.POST("/account/signup", user_handler.UserSignup)
 	//r.GET("/exit/:session", user_handler.Logout)
 	//r.GET("/account/captcha", user_handler.GenerateCaptcha)

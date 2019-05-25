@@ -359,6 +359,10 @@ type IntCmd struct {
 	val int64
 }
 
+func (cmd *IntCmd) Error() string {
+	panic("implement me")
+}
+
 var _ Cmder = (*IntCmd)(nil)
 
 func NewIntCmd(args ...interface{}) *IntCmd {
