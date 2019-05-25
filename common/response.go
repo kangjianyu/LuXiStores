@@ -7,21 +7,24 @@ import (
 
 var (
 	ErrIsNil            = errors.New("操作成功")
-	ErrParamError       = errors.New("请求参数错误")
-	ErrInternalError    = errors.New("内部系统错误")
+	ErrParam            = errors.New("请求参数错误")
+	ErrInternal         = errors.New("内部系统错误")
 	ErrSessionExpire    = errors.New("会话已过期")
 	ErrTransIdDuplicate = errors.New("trans_id重复")
 	ErrSetLockFailed    = errors.New("获取lock失败")
 	ErrRedisKeyNotExist = errors.New("redis key not exist")
+	ErrCaptcha          = errors.New("验证码错误")
+	ErrAuth             = errors.New("用户不存在或密码不正确")
 )
 
 var errMap = map[error]int{
-	nil:                 0,
-	ErrIsNil:            0,
-	ErrParamError:       499,
-	ErrInternalError:    500,
-	ErrSessionExpire:    604,
-	ErrTransIdDuplicate: 20005,
+	nil:              0,
+	ErrIsNil:         0,
+	ErrParam:         499,
+	ErrInternal:      500,
+	ErrSessionExpire: 604,
+	ErrAuth:          1001,
+	ErrCaptcha:       1005,
 }
 
 type BaseRes struct {
@@ -29,13 +32,13 @@ type BaseRes struct {
 	Msg  string `json:"msg"`
 }
 
-func BuildHttpResp(c *gin.Context, data interface{}, err error) map[string]interface{} { // 连错误码也一起返回, 简化代码
+func BuildResp(c *gin.Context, data interface{}, err error) map[string]interface{} { // 连错误码也一起返回, 简化代码
 	if err == nil {
 		err = ErrIsNil
 	}
 	_, exist := errMap[err]
 	if !exist {
-		err = ErrInternalError
+		err = ErrInternal
 	}
 	dmError := errMap[err]
 	errorMsg := err.Error()

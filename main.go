@@ -23,6 +23,7 @@ func main() {
 	//	message := name + " is " + action
 	//	c.String(http.StatusOK, message)
 	//})
+	fmt.Println(user_dao.Rds.GetUserToken("foo"))
 	fmt.Println(user_dao.DB.GetUserInfoByUid(1))
 	r.Run() // listen and serve on 0.0.0.0:8080
 }

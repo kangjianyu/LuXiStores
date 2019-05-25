@@ -8,7 +8,7 @@ import (
 func Hello(c *gin.Context) {
 	//prefix:= "Logout"
 
-	common.BuildHttpResp(c, gin.H{"greet": "hello"}, nil)
+	common.BuildResp(c, gin.H{"greet": "hello"}, nil)
 	return
 
 }
