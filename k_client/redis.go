@@ -53,6 +53,21 @@ func (r *RedisClient) Set(key string, value interface{}, expiration time.Duratio
 	doLog(ret)
 	return ret
 }
+func (r *RedisClient) Hash(key string,field string,value interface{} ) *redis.BoolCmd{
+	ret := r.Rds.HSet(key,field,value)
+	doLog(ret)
+	return ret
+}
+func (r *RedisClient) HDel (key string,field ...string)*redis.IntCmd{
+	ret := r.Rds.HDel(key,field...)
+	doLog(ret)
+	return ret
+}
+func (r *RedisClient) HMGet(key string,field ...string)*redis.SliceCmd{
+	ret := r.Rds.HMGet(key,field...)
+	doLog(ret)
+	return ret
+}
 
 //func (r *RedisClient) Expire(key string, expiration time.Duration) *redis.BoolCmd {
 //	return
