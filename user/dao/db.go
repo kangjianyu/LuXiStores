@@ -8,30 +8,28 @@ import (
 var DB iDB = dbimpl{}
 
 type iDB interface {
-	AddUser(info UserInfo) error
+	AddUserInfo(info UserInfo) error
 	GetUserInfoByUsername(username string) (UserInfo, error)
 	GetUserInfoByUid(uid uint64) (UserInfo, error)
 	GetUserProfileByUid(uid uint64) (UserProfile,error)
-	UpdateUserProfile(uid uint64,nick string,gender uint8) error
+	UpdateUserProfile(uid uint64,nick string,birthDate uint64,gender uint8) error
+	UpdateUserInfo(uid uint64,password string,email string,phone string) error
 }
 
 type dbimpl struct {
 }
 
-func (dbimpl) UpdateUserProfile(uid uint64, nick string,gender uint8) error {
+//用户资料
+func (dbimpl) UpdateUserProfile(uid uint64,nick string,birthDate uint64,gender uint8) error {
 	tablename := (&UserProfile{}).TableName()
-	userrrofile := UserProfile{
-		Nick:nick,
-		Gender:gender,
-	}
-	err := common.MysqlClient.UpdateByProfile(tablename,uid,&userrrofile).Error
+	err := common.MysqlClient.UpdateUserProfile(tablename,uid ,nick,birthDate,gender).Error
 	return err
 }
 
 func (dbimpl) GetUserProfileByUid(uid uint64) (UserProfile, error) {
-	tablename := (&UserProfile{}).TableName()
+	tableName := (&UserProfile{}).TableName()
 	userprofile := UserProfile{}
-	if err := common.MysqlClient.GetByUid(tablename,uid,&userprofile).Error;err!=nil{
+	if err := common.MysqlClient.GetUserProfileByUid(tableName,uid,&userprofile).Error;err!=nil{
 		if gorm.IsRecordNotFoundError(err)==true{
 			return userprofile,nil
 		}
@@ -39,13 +37,31 @@ func (dbimpl) GetUserProfileByUid(uid uint64) (UserProfile, error) {
 	}
 	return userprofile,nil
 }
+//用户信息
+func (dbimpl) UpdateUserInfo(uid uint64, password string,email string,phone string) error {
+	tablename := (&UserInfo{}).TableName()
+	err := common.MysqlClient.UpdateUserInfo(tablename,uid,password,email,phone).Error
+	return err
+}
 
-func (dbimpl) AddUser(info UserInfo) error {
-	panic("implement me")
+func (dbimpl) AddUserInfo(info UserInfo) error {
+	tableName := (&UserInfo{}).TableName()
+	if err :=common.MysqlClient.InsertUserInfo(tableName,info.Username,info.Password,info.Email,info.Status,info.Phone).Error;err!=nil{
+		return err
+	}
+	return nil
 }
 
 func (dbimpl) GetUserInfoByUsername(username string) (UserInfo, error) {
-	panic("implement me")
+	tableName := (&UserInfo{}).TableName()
+	userinfo := UserInfo{}
+	if err := common.MysqlClient.GetUserInfoByUsername(tableName,username,&userinfo).Error;err!=nil{
+		if gorm.IsRecordNotFoundError(err)==true{
+			return userinfo,nil
+		}
+		return userinfo,err
+	}
+	return userinfo,nil
 }
 
 func (dbimpl) GetUserInfoByUid(uid uint64) (UserInfo, error) {

@@ -1,30 +1,24 @@
 package user_handler
-//
-//import (
-//	"LuXiStores/user/service"
-//	"github.com/gin-gonic/gin"
-//)
-//
-//func Logout(c *gin.Context) {
-//	//prefix:= "Logout"
-//	token, err := c.Cookie("sessionid")
-//	if err != nil {
-//		c.JSON(200, gin.H{
-//			"status":  "failed",
-//			"message": "cookie无效",
-//		})
-//	}
-//	ok, err := service.DelUserTokenByRedis(token)
-//	if ok == 1 && err == nil {
-//		c.JSON(200, gin.H{
-//			"status":  "success",
-//			"message": "退出成功",
-//		})
-//	} else {
-//		c.JSON(200, gin.H{
-//			"status":  "failed",
-//			"message": "找不到该token",
-//		})
-//	}
-//
-//}
+
+import (
+	"LuXiStores/common"
+	"LuXiStores/user/dao"
+	"github.com/gin-gonic/gin"
+)
+
+func Logout(c *gin.Context) {
+	token,err := c.Cookie("sessionid")
+	if err != nil {
+		common.BuildResp(c,nil,common.ErrParam)
+		return
+	}
+
+	err = user_dao.Rds.DelUserToken(token)
+	if err!=nil{
+		common.BuildResp(c,nil,common.ErrRedisKeyNotExist)
+		return
+	}
+	common.BuildResp(c,nil,nil)
+	return
+
+}

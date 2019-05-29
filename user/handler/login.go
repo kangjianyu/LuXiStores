@@ -17,15 +17,15 @@ func Login(c *gin.Context) {
 	username := c.PostForm("username")
 	password := c.PostForm("password")
 	verify_code := c.PostForm("verify_code")
-	verify_id := c.PostForm("verify_id")
+	verifyId,err := c.Cookie("verifyid")
 	// 入参错误
-	if verify_code == "" || verify_id == "" || username == "" || password == "" {
+	if verify_code == "" || verifyId == "" || username == "" || password == "" {
 		log.Warn(`verify_code == "" || verify_id == "" || username == "" || password == ""`)
 		common.BuildResp(c, nil, common.ErrParam)
 		return
 	}
 	// 校验码不正确
-	if !base64Captcha.VerifyCaptcha(verify_id, verify_code) {
+	if !base64Captcha.VerifyCaptcha(verifyId, verify_code) {
 		common.BuildResp(c, nil, common.ErrCaptcha)
 		return
 	}
@@ -35,17 +35,17 @@ func Login(c *gin.Context) {
 		return
 	}
 	// 用户不存在
-	if userinfo.UId == 0 {
+	if userinfo.Uid == 0 {
 		common.BuildResp(c, nil, common.ErrAuth)
 		return
 	}
 	// 密码错误
-	if password != userinfo.PassWord {
+	if password != userinfo.Password {
 		common.BuildResp(c, nil, common.ErrAuth)
 		return
 	}
 
-	token,  err := SetToken(userinfo.UId)
+	token,  err := SetToken(userinfo.Uid)
 	if err != nil{
 		return
 	}

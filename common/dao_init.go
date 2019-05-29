@@ -10,7 +10,7 @@ import (
 
 var (
 	RedisClient *k_client.RedisClient
-	MysqlClient *gorm.DB
+	MysqlClient *k_client.MysqlClient
 )
 
 func Init() {
@@ -18,11 +18,12 @@ func Init() {
 	RedisClient = newRedisClient()
 
 }
-func newMysqlClient() (mysqlClient *gorm.DB) {
+func newMysqlClient() (mysqlClient *k_client.MysqlClient) {
 	const prefix = "MysqlInit "
-	dataSourceName := "root:123456@tcp(127.0.0.1:3306)/luxistores?charset=utf8&parseTime=true&loc=Local"
+	dataSourceName := "root:KANG345876@qq.com@tcp(127.0.0.1:3306)/luxistores?charset=utf8&parseTime=true&loc=Local"
 	var err error
-	mysqlClient, err = gorm.Open("mysql", dataSourceName)
+	mysql, err := gorm.Open("mysql", dataSourceName)
+	mysqlClient = k_client.NewMysqlClient(mysql)
 	if err != nil {
 		log.Error(prefix+"connect mysql error : dataSourceName: %s", dataSourceName)
 		panic("MysqlInit failed")

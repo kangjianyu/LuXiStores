@@ -4,17 +4,17 @@ import (
 	"LuXiStores/common"
 	"LuXiStores/user/dao"
 	"encoding/json"
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
 	"strconv"
 	"time"
 )
 type ProfileData struct {
-	Uid uint64
-	Nick string
-	Token string
-	Gender uint8
+	Uid			uint64 `json:"uid"`
+	Nick		string `json:"nick"`
+	BirthDate	uint64 `json:"birth_date"`
+	Gender		uint8  `json:"gender"`
+	Token  		string `json:"token"`
 }
 func GetProfile(c *gin.Context){
 	struid := c.Query("uid")
@@ -29,7 +29,6 @@ func GetProfile(c *gin.Context){
 		common.BuildResp(c,nil,common.ErrInternal)
 		return
 	}
-	fmt.Println(userprofile.BirthDate,"出生时间")
 	userprofile.BirthDate = uint64(time.Now().Year()) - userprofile.BirthDate
 	common.BuildResp(c,userprofile,nil)
 	return
@@ -40,11 +39,17 @@ func UpdateProfile(c *gin.Context){
 	profiledata := ProfileData{}
 	err = json.Unmarshal(data,&profiledata)
 	if err!=nil||profiledata.Gender>3{
-		fmt.Println(err)
 		common.BuildResp(c,nil,common.ErrParam)
 		return
 	}
-	err = user_dao.DB.UpdateUserProfile(profiledata.Uid,profiledata.Nick,profiledata.Gender)
+	//token,err :=c.Cookie("sessionid")
+	//value,err := user_dao.Rds.GetUserToken(token)
+	//if value==""||value!=profiledata.Uid{
+	//	common.BuildResp(c,nil,common.ErrRedisKeyNotExist)
+	//	return
+	//}
+
+	err = user_dao.DB.UpdateUserProfile(profiledata.Uid,profiledata.Nick,profiledata.BirthDate,profiledata.Gender)
 	if err!=nil{
 		common.BuildResp(c,nil,common.ErrInternal)
 		return
