@@ -1,8 +1,8 @@
-package goods_handler
+package category_handler
 
 import (
+	category_dao "LuXiStores/category/dao"
 	"LuXiStores/common"
-	"LuXiStores/goods/dao"
 	"encoding/json"
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
@@ -26,7 +26,7 @@ func CategoryUpdate(c *gin.Context){
 		return
 	}
 
-	err = goods_dao.DB.UpdateGoodsType(Data.CategoryId,Data.Name,Data.ParentId,Data.Status,Data.SortOrder,Data.Key,Data.Level)
+	err = category_dao.DB.UpdateGoodsType(Data.CategoryId,Data.Name,Data.ParentId,Data.Status,Data.SortOrder,Data.Key,Data.Level)
 	if err!=nil{
 		common.BuildResp(c,nil,common.ErrInternal)
 		return

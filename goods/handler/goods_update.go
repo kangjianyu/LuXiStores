@@ -20,7 +20,7 @@ type UpdateGoodsData struct {
 }
 type UpdateGoodsStatusData struct {
 	Id          uint64      `json:"id"`
-	Status 		int64 		`json:"status"`
+	Status 		string 		`json:"status"`
 }
 func UpdateGoodsInfo(c *gin.Context){
 	Indata,err := ioutil.ReadAll(c.Request.Body)
@@ -48,12 +48,26 @@ func UpdateGoodsStatus(c *gin.Context){
 		common.BuildResp(c,nil,common.ErrParam)
 		return
 	}
-
-	err = goods_dao.DB.UpdateGoodsStatus(Data.Id,Data.Status)
-	if err!=nil{
-		common.BuildResp(c,nil,common.ErrInternal)
+	if Data.Status=="publish"{
+		err = goods_dao.DB.UpdateGoodsStatus(Data.Id,1)
+		if err!=nil{
+			common.BuildResp(c,nil,common.ErrInternal)
+			return
+		}
+		common.BuildResp(c,nil,nil)
 		return
 	}
-	common.BuildResp(c,nil,nil)
+
+	if Data.Status=="unpulish"{
+		err = goods_dao.DB.UpdateGoodsStatus(Data.Id,0)
+		if err!=nil{
+			common.BuildResp(c,nil,common.ErrInternal)
+			return
+		}
+		common.BuildResp(c,nil,nil)
+		return
+	}
+	common.BuildResp(c,nil,common.ErrParam)
 	return
+
 }

@@ -67,6 +67,7 @@ func GetGoodsInfoDetail(c *gin.Context){
 		common.BuildResp(c,nil,common.ErrInternal)
 		return
 	}
+
 	common.BuildResp(c,data,nil)
 	return
 

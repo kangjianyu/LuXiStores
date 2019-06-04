@@ -1,8 +1,8 @@
-package goods_handler
+package category_handler
 
 import (
+	category_dao "LuXiStores/category/dao"
 	"LuXiStores/common"
-	"LuXiStores/goods/dao"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -27,14 +27,14 @@ func CategoryAdd(c *gin.Context){
 		common.BuildResp(c,nil,errors.New("父节点无效"))
 		return
 	}
-	info := goods_dao.GoodsCategory{
+	info := category_dao.GoodsCategory{
 		Name:       categoryUpdateData.Name,
 		ParentId:   categoryUpdateData.ParentId,
 		Status:     0,
 		Key:        fmt.Sprintf("%s%d-",key,categoryUpdateData.ParentId),
 		Level:      level+1,
 	}
-	err = goods_dao.DB.AddGoodsType(info)
+	err = category_dao.DB.AddGoodsType(info)
 	if err!=nil{
 		common.BuildResp(c,nil,common.ErrInternal)
 		return

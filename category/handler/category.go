@@ -1,8 +1,8 @@
-package goods_handler
+package category_handler
 
 import (
 	"LuXiStores/common"
-	"LuXiStores/goods/dao"
+	"LuXiStores/category/dao"
 	"github.com/gin-gonic/gin"
 	"strconv"
 )
@@ -24,7 +24,7 @@ func CategoryForNext(c *gin.Context){
 		common.BuildResp(c,nil,common.ErrInternal)
 		return
 	}
-	categoryInfos,err :=goods_dao.DB.GetGoodsTypeByidForNext(key,int64(categoryId),level+1)
+	categoryInfos,err :=category_dao.DB.GetGoodsTypeByidForNext(key,int64(categoryId),level+1)
 	if err!=nil{
 		common.BuildResp(c,nil,common.ErrInternal)
 		return
@@ -35,7 +35,7 @@ func CategoryForNext(c *gin.Context){
 
 
 func CategoryForNow(categoryId int64)(key string,level int64,name string,err error){
-	categoryInfo,err := goods_dao.DB.GetGoodsTypeByid(categoryId)
+	categoryInfo,err := category_dao.DB.GetGoodsTypeByid(categoryId)
 	if err!=nil{
 		return
 	}

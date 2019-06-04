@@ -30,6 +30,80 @@ func MysqlLog(ret *gorm.DB) {
 		log.Error("(REDIS %s)|%s|err:%s",callerName,ret.Error)
 	}
 }
+//订单
+func(m *MysqlClient) GetOrderList(table string,uid uint64,count uint64,offset uint64,user interface{})*gorm.DB{
+	ret := m.DB.Table(table).LogMode(true).Where("user_id=?",uid).Limit(count).Offset(offset).Find(user)
+	return ret
+}
+
+func (m *MysqlClient) GetOrderDetail(tablee string,orderId uint64,uid uint64,user interface{})*gorm.DB{
+	ret := m.DB.Table(tablee).LogMode(true).Where("user_id=? AND id=?",uid,orderId).First(user)
+	return ret
+}
+
+func (m *MysqlClient) InsertOrder(table string,tradeId string) *gorm.DB{
+	sql := fmt.Sprintf("INSERT INTO `%s` (`trade_id`) VALUES ('%s')",table,tradeId)
+	ret := m.DB.LogMode(true).Exec(sql)
+	return ret
+}
+//购物车
+func (m *MysqlClient) GetGoodsCartList(table string,uid uint64,count uint64,offset uint64,user interface{}) *gorm.DB{
+	ret := m.DB.Table(table).LogMode(true).Where("user_id=?",uid).Limit(count).Offset(offset).Find(user)
+	return ret
+}
+func (m *MysqlClient) UpdateGoodsCartCount(table string,productid uint64,quantity uint64,uid uint64)*gorm.DB{
+	sql := fmt.Sprintf("UPDATE `%s` SET `quantity`= %d WHERE `product_id`=%d AND `user_id`= %d",table,quantity,productid,uid)
+	ret := m.DB.LogMode(true).Exec(sql)
+	return ret
+}
+func (m *MysqlClient) AddGoodsCart(table string,uid uint64,quantity uint64,productId uint64) *gorm.DB{
+	sql := fmt.Sprintf("INSERT INTO `%s` (`user_id`,`product_id`,`quantity`) VALUES (%d,%d,%d)",table,uid,productId,quantity)
+	ret := m.DB.LogMode(true).Exec(sql)
+	return ret
+}
+
+func (m *MysqlClient) DelGoodsCart(table string,uid uint64,productId uint64) *gorm.DB{
+	sql := fmt.Sprintf("DELETE FROM `%s` WHERE `product_id`=%d AND `user_id`= %d ",table,productId,uid)
+	ret := m.DB.LogMode(true).Exec(sql)
+	return ret
+}
+
+
+//商品收货地址
+func (m *MysqlClient) GetGoodsReceiverAddress( table string,uid uint64,user interface{}) *gorm.DB{
+	ret := m.DB.Table(table).LogMode(true).Where("uid=?",uid).Find(user)
+	return ret
+}
+
+func (m *MysqlClient) AddGoodsReceiverAddress(table string,uid uint64,nick string,tel string,mobile string,province string,city string,district string,address string,IsDefault uint8) *gorm.DB{
+	sql := fmt.Sprintf("INSERT INTO `%s` (`uid`,`nick`,`tel`,`mobile`,`province`,`city`,`district`,`address`,`is_default`) VALUES (%d,'%s','%s','%s','%s','%s','%s','%s',%d) ",table,uid,nick,tel,mobile,province,city,district,address,IsDefault)
+	ret := m.DB.LogMode(true).Exec(sql)
+	return ret
+}
+func (m *MysqlClient) DelGoodsReceiverAddress(table string,id uint64) *gorm.DB{
+	sql := fmt.Sprintf("DELETE FROM `%s` WHERE `id` = %d",table,id)
+	ret := m.DB.LogMode(true).Exec(sql)
+	return ret
+}
+func (m *MysqlClient) UpdateGoodsReceiverAddress(table string,id uint64,nick string,tel string,mobile string,province string,city string,district string,address string) *gorm.DB{
+	sql := fmt.Sprintf("UPDATE `%s` SET `nick` =' %s',`tel` = '%s',`mobile`='%s',`province`='%s',`city`='%s',`district`='%s',`address`='%s' WHERE `id` = %d",table,nick,tel,mobile,province,city,district,address,id)
+	ret := m.DB.LogMode(true).Exec(sql)
+	return ret
+}
+func (m *MysqlClient) ChangeDefaultGoodsReceiverAddress(table string,uid uint64) *gorm.DB{
+	sql := fmt.Sprintf("UPDATE `%s` SET `is_default` = 0 WHERE `uid`=%d ",table,uid)
+	ret := m.DB.LogMode(true).Exec(sql)
+	return ret
+}
+func (m *MysqlClient) SetDefaultGoodsReceiverAddress(table string,id uint64) *gorm.DB{
+	sql := fmt.Sprintf("UPDATE `%s` SET `is_default`= 1 WHERE `id`= %d ",table,id)
+	ret := m.DB.LogMode(true).Exec(sql)
+	return ret
+}
+func (m *MysqlClient) GetDefaultGoodsReceiverAddress(table string,uid uint64,user interface{}) *gorm.DB{
+	ret := m.DB.Table(table).LogMode(true).Where("`is_default` = 1 and `uid`=?",uid).First(user)
+	return ret
+}
 //商品信息
 func (m *MysqlClient) GetGoodsInfo(table string,categoryId int64,count int64,offset int64,sortorder string,users interface{},) *gorm.DB {
 	ret := m.DB.Table(table).LogMode(true).Select("id,name,price,main_image,stock").Where("category_id=?",categoryId).Limit(count).Offset(offset).Order(sortorder).Find(users)

@@ -1,8 +1,12 @@
 package main
 
 import (
+	"LuXiStores/cart/handler"
+	"LuXiStores/category/handler"
 	"LuXiStores/common"
 	"LuXiStores/goods/handler"
+	"LuXiStores/order/handler"
+	"LuXiStores/receiver/handler"
 	user_dao "LuXiStores/user/dao"
 	user_handler "LuXiStores/user/handler"
 	"fmt"
@@ -25,15 +29,26 @@ func main() {
 	r.GET("/account/captcha", user_handler.GenerateCaptcha)
 	r.POST("/account/forget",user_handler.ForgetPassword)
 	r.POST("/account/update",user_handler.UpdatePassword)
-	r.GET("/goods/category",goods_handler.CategoryForNext)
-	r.POST("/goods/category/update",goods_handler.CategoryUpdate)
-	r.POST("/goods/category/add",goods_handler.CategoryAdd)
+	r.GET("/goods/category", category_handler.CategoryForNext)
+	r.POST("/goods/category/update", category_handler.CategoryUpdate)
+	r.POST("/goods/category/add", category_handler.CategoryAdd)
 	r.GET("/goods/list",goods_handler.GetGoodsInfo)
 	r.GET("/goods/list/detail",goods_handler.GetGoodsInfoDetail)
 	r.POST("/goods/add",goods_handler.AddGoodsInfo)
 	r.POST("/goods/update",goods_handler.UpdateGoodsInfo)
 	r.POST("/goods/status",goods_handler.UpdateGoodsStatus)
 	r.POST("/goods/del",goods_handler.DelGoodsInfo)
+	r.GET("/goods/receiver/list", receiver_handler.GetGoodsReceiverAddressList)
+	r.POST("/goods/receiver/del", receiver_handler.DelGoodsReceiverAddress)
+	r.POST("/goods/receiver/add", receiver_handler.AddGoodsReceiverAddress)
+	r.POST("/goods/receiver/update", receiver_handler.UpdateGoodsReceiverAddress)
+	r.POST("/goods/receiver/default", receiver_handler.SetGoodsReceiverAddress)
+	r.POST("/goods/cart/list",cart_handler.GetGoodsCartList)
+	r.POST("/goods/cart/del",cart_handler.DelGoodsCartList)
+	r.POST("/goods/cart/add",cart_handler.AddGoodsCartList)
+	r.POST("/goods/cart/update",cart_handler.UpdateGoodsCartList)
+	r.POST("/order/add",order_handler.AddOrder)
+	r.GET("/order/check",order_handler.CheckAliPay)
 	//r.GET("/user/:name/*action", func(c *gin.Context) {
 	//	name := c.Param("name")
 	//	action := c.Param("action")
