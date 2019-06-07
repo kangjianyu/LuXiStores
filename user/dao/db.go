@@ -2,6 +2,7 @@ package user_dao
 
 import (
 	"LuXiStores/common"
+	"fmt"
 	"github.com/jinzhu/gorm"
 )
 
@@ -14,10 +15,13 @@ type iDB interface {
 	GetUserProfileByUid(uid uint64) (UserProfile,error)
 	UpdateUserProfile(uid uint64,nick string,birthDate uint64,gender uint8) error
 	UpdateUserInfo(uid uint64,password string,email string,phone string) error
+	GetMaxUid() (uint64,error)
 }
 
 type dbimpl struct {
 }
+
+
 
 //用户资料
 func (dbimpl) UpdateUserProfile(uid uint64,nick string,birthDate uint64,gender uint8) error {
@@ -38,6 +42,13 @@ func (dbimpl) GetUserProfileByUid(uid uint64) (UserProfile, error) {
 	return userprofile,nil
 }
 //用户信息
+func (dbimpl) GetMaxUid() (uint64, error) {
+	tablename := (&UserInfo{}).TableName()
+	userinfo := UserInfo{}
+	ret := common.MysqlClient.GetMaxUid(tablename,&userinfo)
+	fmt.Println(userinfo.Uid,"最大id")
+	return userinfo.Uid,ret.Error
+}
 func (dbimpl) UpdateUserInfo(uid uint64, password string,email string,phone string) error {
 	tablename := (&UserInfo{}).TableName()
 	err := common.MysqlClient.UpdateUserInfo(tablename,uid,password,email,phone).Error
@@ -46,7 +57,7 @@ func (dbimpl) UpdateUserInfo(uid uint64, password string,email string,phone stri
 
 func (dbimpl) AddUserInfo(info UserInfo) error {
 	tableName := (&UserInfo{}).TableName()
-	if err :=common.MysqlClient.InsertUserInfo(tableName,info.Username,info.Password,info.Email,info.Status,info.Phone).Error;err!=nil{
+	if err :=common.MysqlClient.InsertUserInfo(tableName,info.Uid,info.Username,info.Password,info.Email,info.Status,info.Phone).Error;err!=nil{
 		return err
 	}
 	return nil

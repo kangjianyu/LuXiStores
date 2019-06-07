@@ -30,7 +30,38 @@ func MysqlLog(ret *gorm.DB) {
 		log.Error("(REDIS %s)|%s|err:%s",callerName,ret.Error)
 	}
 }
+//短链接
+func (m *MysqlClient) InsertShortUrl(table string,shorturl string,longurl string)*gorm.DB{
+	sql := fmt.Sprintf("INSERT INTO `%s` ( `short_url`,`long_url`) VALUES ('%s','%s')",table,shorturl,longurl)
+	ret := m.DB.LogMode(true).Exec(sql)
+	return ret
+}
+func (m *MysqlClient) GetLongUrl(table string,shorturl string,user interface{}) *gorm.DB{
+	ret := m.DB.Table(table).LogMode(true).Where("short_url=?",shorturl).First(user)
+	return ret
+}
+
+//func (m *MysqlClient) GetMaxShortId(table string,shorturl string)*gorm.DB{
+//	ret := m.DB.Table(table).LogMode(true)
+//
+//}
 //订单
+func (m *MysqlClient) UpdateOrderStatus(table string,nowtime string) *gorm.DB{
+	sql := fmt.Sprintf("UPDATE `%s` SET `status`= %d WHERE `create_time` <= %s",table,4,nowtime)
+	ret := m.DB.LogMode(true).Exec(sql)
+	return ret
+}
+func (m *MysqlClient) InsertOrderComment(table string,orderId,uid,start int64,context string)*gorm.DB{
+	sql := fmt.Sprintf("INSERT INTO `%s` ( `order_id`,`uid`,`context`,`start`) VALUES (%d,%d,'%s',%d)",table,orderId,uid,context,start)
+	ret := m.DB.LogMode(true).Exec(sql)
+	return ret
+}
+func (m *MysqlClient) DelOrderComment(table string,orderId,uid int64) *gorm.DB{
+	sql := fmt.Sprintf("DELETE FROM `%s` WHERE `order_id` = %d AND `uid` = %d",table,orderId,uid)
+	ret := m.DB.LogMode(true).Exec(sql)
+	return ret
+
+}
 func(m *MysqlClient) GetOrderList(table string,uid uint64,count uint64,offset uint64,user interface{})*gorm.DB{
 	ret := m.DB.Table(table).LogMode(true).Where("user_id=?",uid).Limit(count).Offset(offset).Find(user)
 	return ret
@@ -41,9 +72,14 @@ func (m *MysqlClient) GetOrderDetail(tablee string,orderId uint64,uid uint64,use
 	return ret
 }
 
-func (m *MysqlClient) InsertOrder(table string,tradeId string) *gorm.DB{
-	sql := fmt.Sprintf("INSERT INTO `%s` (`trade_id`) VALUES ('%s')",table,tradeId)
+func (m *MysqlClient) InsertOrder(table string,tradeId string,orderId uint64,productId uint64) *gorm.DB{
+	sql := fmt.Sprintf("INSERT INTO `%s` ( `id`,`trade_id`,`product_id`) VALUES (%d,'%s',%d)",table,orderId,tradeId,productId)
 	ret := m.DB.LogMode(true).Exec(sql)
+	return ret
+}
+
+func (m *MysqlClient) GetMaxOrderId(table string,user interface{}) *gorm.DB{
+	ret := m.DB.Table(table).LogMode(true).Order("`id` desc ").Limit(1).First(user)
 	return ret
 }
 //购物车
@@ -57,7 +93,7 @@ func (m *MysqlClient) UpdateGoodsCartCount(table string,productid uint64,quantit
 	return ret
 }
 func (m *MysqlClient) AddGoodsCart(table string,uid uint64,quantity uint64,productId uint64) *gorm.DB{
-	sql := fmt.Sprintf("INSERT INTO `%s` (`user_id`,`product_id`,`quantity`) VALUES (%d,%d,%d)",table,uid,productId,quantity)
+	sql := fmt.Sprintf("INSERT INTO `%s` (`user_id`,`product_id`,`quantity`) VALUES (%d,%d,%d) ON DUPLICATE  KEY UPDATE `quantity`=`quantity`+1",table,uid,productId,quantity)
 	ret := m.DB.LogMode(true).Exec(sql)
 	return ret
 }
@@ -166,9 +202,14 @@ func (m *MysqlClient) UpdateUserInfo(table string,uid uint64,password string,ema
 	return ret
 }
 
-func (m *MysqlClient) InsertUserInfo(table string,Username string,Password string,Email string,Status uint8,Phone string) *gorm.DB{
-	sql := fmt.Sprintf("INSERT INTO `%s` (`username`, `password`, `email`, `status`, `phone`) VALUES('%s','%s','%s',%d,'%s')",table,Username,Password,Email,Status,Phone)
+func (m *MysqlClient) InsertUserInfo(table string,uid uint64,Username string,Password string,Email string,Status uint8,Phone string) *gorm.DB{
+	sql := fmt.Sprintf("INSERT INTO `%s` (`uid`,`username`, `password`, `email`, `status`, `phone`) VALUES(%d,'%s','%s','%s',%d,'%s')",table,uid,Username,Password,Email,Status,Phone)
 	ret := m.DB.LogMode(true).Exec(sql)
+	return ret
+}
+
+func (m *MysqlClient) GetMaxUid(table string,user interface{}) *gorm.DB{
+	ret := m.DB.Table(table).LogMode(true).Order("`uid` desc ").Limit(1).First(user)
 	return ret
 }
 //用户资料

@@ -4,18 +4,23 @@ import (
 	"LuXiStores/common"
 	"LuXiStores/goods/dao"
 	"LuXiStores/order/dao"
+	"bytes"
+	"crypto"
+	"crypto/rand"
 	"crypto/rsa"
 	"crypto/sha256"
 	"crypto/x509"
 	"encoding/base64"
 	"encoding/json"
+	"encoding/pem"
+	"errors"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/hashicorp/go-uuid"
-	"io"
 	"io/ioutil"
-	"math/rand"
+	random "math/rand"
 	"sort"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -27,7 +32,6 @@ type Alipay struct {
 type AddOrderData struct {
 	UserId uint64 `json:"user_id"`
 	ProductId uint64 `json:"product_id"`
-
 }
 func AddOrder(c *gin.Context){
 	inData,err := ioutil.ReadAll(c.Request.Body)
@@ -41,15 +45,15 @@ func AddOrder(c *gin.Context){
 
 	Uuid,err := uuid.GenerateUUID()
 	goodsinfo ,err := goods_dao.DB.GetGoodInfoDetail(Data.ProductId)
-	alipayKey := fmt.Sprintf("alipay_user=%d_product=%d_price=%.2f_%s",Data.UserId,Data.ProductId,goodsinfo.Price,Uuid)
-
 	if err!=nil{
-		common.BuildResp(c,nil,common.ErrInternal)
+		common.BuildResp(c,nil,common.ErrParam)
 		return
 	}
-	header,sign := alipaySign(goodsinfo.Name,Data.UserId,Data.ProductId,goodsinfo.Price)
+	alipayKey := fmt.Sprintf("alipay_user=%d_product=%d_price=%.2f_%s",Data.UserId,Data.ProductId,goodsinfo.Price,Uuid)
+	header,sign,err := alipaySign(goodsinfo.Name,Data.UserId,Data.ProductId,goodsinfo.Price)
 	err = order_dao.Rds.SetOrderId(alipayKey,sign,time.Minute*15)
-	err = order_dao.DB.AddOrder(alipayKey)
+	orderId,err := getNextOrderId()
+	err = order_dao.DB.AddOrder(alipayKey,uint64(orderId),Data.ProductId)
 	if err!=nil{
 		common.BuildResp(c,nil,common.ErrInternal)
 		return
@@ -58,12 +62,11 @@ func AddOrder(c *gin.Context){
 	common.BuildResp(c,header,nil)
 	return
 
-
 }
 
 
-func alipaySign(title string,uid uint64,productId uint64,price float64) (map[string]interface{},string){
-	header := make(map[string]interface{})
+func alipaySign(title string,uid uint64,productId uint64,price float64) (header map[string]interface{},sign string,err error){
+	header = make(map[string]interface{})
 	header["app_id"] = "2019060265478144"
 	header["charset"] = "utf-8"
 	header["method"] = "alipay.trade.wap.pay"
@@ -90,24 +93,71 @@ func alipaySign(title string,uid uint64,productId uint64,price float64) (map[str
 		}
 	}
 	sort.Strings(signs)
-	sign := ""
 	sign = strings.Join(signs,sign)
 	sign = sign[0:len(sign)-1]
 	fmt.Println(sign)
-	pivkey,err :=x509.ParsePKCS1PublicKey([]byte("MIIEpAIBAAKCAQEAtGCoAJWqZ+SG13048bSWTTxsphfz1nZg3Js3ovztdZqfw2aB74rfjC964WbhInLMTZ0HEXHy/oR6tciPFNGliptr32fOHCcLSdOGY2r1j0fT8ETpx6cskyoktUbcX4Muqgw4LUZU0BRfg+EsvWOmSe3WANxq8A0ECtvZGpr3itMNquuyxQY+6mA5LoQWbZC2ERYvzr/gbDVuWHlA6/WnsdHwVOwBsLfrod2396vWomfH+R75H0bAz5N7PqKsX0SaehK5oO90Z3lkBYSmec4UN1djBxUjC2llU0RxFIH8WwpnTtzfz1Z74wS90JJFVxVDZ/CvZUIoUsEAX1z3ZBbaLQIDAQABAoIBAQCL8CDmszZM+8KRE5lGC7A/o403HoYR8C0deV4kmM0w3BDua2yLBtZ/z6YpkMNBEobl/9kn85ttUiJRPZOjtzIS4plB7Sq+NJxRXkV4g9aWnkcStKQaPNwcICnyaVM21nMxgeFjXpkWBXhEvEEVfWXZHSdV66sbKT3lnsJEHc3GaMBUlYe+ld3aV+VrJcFqf99qFRCnhumC0xfe6zB+SFOuJ/mOHyjGmAaZHPrVis/gH5nXJT84Qv4pVbR4ISVQRXu3xTYX2A9kq6ZYtCZx4B/ZTKU3u2nGCxB5RSFhywuzEN2tGg/EdaS614kVrSE4NOjKgXYcAU0S5LewRns+4mgRAoGBAOhSOJ2nM4H7sqSNcnUiqAA6ST4AdQiif1G0ChTarnHrQ/oHUZnq5NONJvaoiLi2VvdJoC/GHa71o1dhtlo99zEcp4G0GgfJzE6Bsnvp8thwAJ1pcDj9Bf4EMYjpxk2I+sQlu4DwyQiMG5BAxhjBqLcd/Qm5InpreAhklG0qdDBTAoGBAMbDHDER/i2IwrqT6+zRA9l0+l3f0P2P2JP7Z1czNcJHtt40gUvZjssPRzhIpM/Dljun05WUruiAjqc6KdI71TdFNLCjokrl17m3AR3xrwmfcGXEeJQXWK0nIMpI1yBRtK5jjtPKKemZbpsoXgiq0njBiC1EkQ/xtWO+c/lueXt/AoGBAISSVshwH05vaRPJu6ToL+JhYGZHMIHK6Mig6pfX6nALhvDouEIS7p1iEPf0WIC/XIUkuIpKjanHdnxov/xjG+okpdm4ApqrJzEthcJ8UB3+W/t3rZh3mrHHhtTQQl8AackAly0POkjsWtZIgEKkUDienkSsJuag6RAxBRn+fesNAoGADfaO+HOHI7PD2k+h91UHrDMnk4ixqd59HIhAzkNut2NKWXney3FRMrq0CiQwT9gxqac0mgGD+Blv7BeN8JL7e5KFDROxxwk2inlsvqnH3ikxQDT5M44gUKm7B/ruAfs7cjTUR9Sf9SUuPAAt+vXlK06NPoDen/we/g7XHuK/7gkCgYBQ67RNCVzHvGwugsAOZYlvTN8QlEeK+h5UbSkUGjkUQ/BnP1Dc/ovLZ/CCgOApGtY1X2sDAiM/KNzPcn9cm7mEIRyZRphjpkiTWQbic4VIqjUfKGaquXMit4zuyKwPDgzskLI/nMAwdf2KCH/3HDvN750ICkizSH1JzIPvzDnTdg=="))
+	privateKey,err := ioutil.ReadFile("/Users/kjy/Downloads/RSA签名验签工具_MAC_V3/RSA密钥/应用私钥_tmp.txt")
 	h := sha256.New()
 	h.Write([]byte(sign))
-	h.Sum(nil)
-	pk, err := ParsePrivateKey(pemPriKey)
-	rsa.SignPKCS1v15(nil,)
-	rsa.EncryptPKCS1v15(rand.Read(),pivkey,[]byte(sign))
-	util
-	encoding.ParsePKCS1PrivateKey(encoding.FormatPrivateKey(privateKey))
-
-	s := base64.StdEncoding.EncodeToString(a)
-	fmt.Println(s)
+	var block *pem.Block
+	block, _ = pem.Decode([]byte(privateKey))
+	if block==nil{
+		err = errors.New("私钥有错")
+		return
+	}
+	pk, err := x509.ParsePKCS1PrivateKey(block.Bytes)
+	d := h.Sum(nil)
+	bs,err := rsa.SignPKCS1v15(rand.Reader,pk, crypto.SHA256, d)
+	s := base64.StdEncoding.EncodeToString(bs)
 	header["sign"] = s
 
-	return header,s
+	return header,s,err
 }
 
+func getNextOrderId()(int64,error){
+
+	times := time.Now().Format("20060102150405")
+	ret := common.RedisClient.IncrBy(times,1)
+	fmt.Println(times)
+	err := ret.Err()
+	if ret.Val()==1{
+		random.Seed(time.Now().Unix())
+		ret =common.RedisClient.IncrBy(times,int64(random.Intn(1000)))
+		err = common.RedisClient.Expire(times,5*time.Second).Err()
+	}
+	Id,err := strconv.Atoi(times+"0000")
+	return int64(Id)+ret.Val(),err
+}
+func formatKey(raw, prefix, suffix string) (result []byte) {
+	if raw == "" {
+		return nil
+	}
+	raw = strings.Replace(raw, prefix, "", 1)
+	raw = strings.Replace(raw, suffix, "", 1)
+	raw = strings.Replace(raw, " ", "", -1)
+	raw = strings.Replace(raw, "\n", "", -1)
+	raw = strings.Replace(raw, "\r", "", -1)
+	raw = strings.Replace(raw, "\t", "", -1)
+
+	var ll = 64
+	var sl = len(raw)
+	var c = sl / ll
+	if sl%ll > 0 {
+		c = c + 1
+	}
+
+	var buf bytes.Buffer
+	buf.WriteString(prefix + "\n")
+	for i := 0; i < c; i++ {
+		var b = i * ll
+		var e = b + ll
+		if e > sl {
+			buf.WriteString(raw[b:])
+		} else {
+			buf.WriteString(raw[b:e])
+		}
+		buf.WriteString("\n")
+	}
+	buf.WriteString(suffix)
+	return buf.Bytes()
+}

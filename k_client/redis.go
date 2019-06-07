@@ -68,10 +68,17 @@ func (r *RedisClient) HMGet(key string,field ...string)*redis.SliceCmd{
 	doLog(ret)
 	return ret
 }
+func (r *RedisClient) IncrBy(key string,value int64) *redis.IntCmd{
+	ret := r.Rds.IncrBy(key,value)
+	doLog(ret)
+	return ret
+}
+func (r *RedisClient) Expire(key string, expiration time.Duration) *redis.BoolCmd {
+	ret := r.Rds.Expire(key,expiration)
+	doLog(ret)
+	return ret
 
-//func (r *RedisClient) Expire(key string, expiration time.Duration) *redis.BoolCmd {
-//	return
-//}
+}
 //func (r *RedisClient) ExpireAt(key string, tm time.Time) *redis.BoolCmd {
 //	return
 //}

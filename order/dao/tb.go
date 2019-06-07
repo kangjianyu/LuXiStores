@@ -18,9 +18,18 @@ type TradeInfo struct {
 	ProductId uint64  `gorm:"column:product_id" json:"product_id"`
 	Price     float64 `gorm:"column:price" json:"price"`
 	PayType   uint64  `gorm:"column:pay_type" json:"pay_type"`
+}
 
-
+type OrderComment struct {
+	Id			int64	`gorm:"column:id" json:"id"`
+	OrderId		int64	`gorm:"column:order_id" json:"order_id"`
+	Uid			int64	`gorm:"column:uid" json:"uid"`
+	Context		string	`gorm:"column:context" json:"context"`
+	Start 		int64	`gorm:"column:start" json:"start"`
 }
 func (u *TradeInfo) TableName()string{
 	return "mmall_trade"
+}
+func (u *OrderComment) TableName()string{
+	return "mmall_order_comment"
 }

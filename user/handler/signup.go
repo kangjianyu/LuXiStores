@@ -7,6 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/mojocn/base64Captcha"
 	"io/ioutil"
+	"math/rand"
 	"time"
 )
 type SignUp struct {
@@ -37,7 +38,9 @@ func UserSignUp(c *gin.Context){
 		common.BuildResp(c,nil,common.ErrParam)
 		return
 	}
+	uid,err := getNextUid()
 	info := user_dao.UserInfo{
+		Uid:uint64(uid),
 		Username:   signupData.Username,
 		Password:   signupData.Password,
 		Email:      signupData.Email,
@@ -65,4 +68,22 @@ func CheckUserName(name string) (valid bool) {
 		return true
 	}
 	return false
+}
+
+func getNextUid() (int64,error){
+	rand.Seed(time.Now().Unix())
+	value := rand.Intn(100)
+	ret := common.RedisClient.Rds.IncrBy("max_uid",int64(value))
+	err := ret.Err()
+	if ret.Val()==int64(value){
+		uid,err := user_dao.DB.GetMaxUid()
+		if uid==0{
+			ret = common.RedisClient.Rds.IncrBy("max_uid",100000)
+		} else{
+			ret = common.RedisClient.Rds.IncrBy("max_uid",int64(uid))
+		}
+		return ret.Val(),err
+
+	}
+	return ret.Val(),err
 }

@@ -16,6 +16,7 @@ type iRedis interface {
 	BlackListCheck(key string,field...string)(value []interface{},err error)
 	SetUpdateToken(key string,value uint64,TTl time.Duration)(err error)
 	GetUpdateToken(key string)(value string,err error)
+
 }
 
 type redisImpl struct{}

@@ -1,15 +1,15 @@
 package main
 
 import (
-	"LuXiStores/cart/handler"
+	"LuXiStores/backed"
+	cart_handler "LuXiStores/cart/handler"
 	"LuXiStores/category/handler"
 	"LuXiStores/common"
-	"LuXiStores/goods/handler"
-	"LuXiStores/order/handler"
+	goods_handler "LuXiStores/goods/handler"
+	order_handler "LuXiStores/order/handler"
 	"LuXiStores/receiver/handler"
-	user_dao "LuXiStores/user/dao"
+	"LuXiStores/shorturl/handler"
 	user_handler "LuXiStores/user/handler"
-	"fmt"
 	"github.com/gin-gonic/gin"
 )
 
@@ -17,6 +17,7 @@ import (
 func main() {
 	r := gin.Default()
 	common.Init()
+	backed.InitBackend()
 	r.GET("/ping", user_handler.Hello)
 	r.POST("/blacklist/add",user_handler.BlackListAdd)
 	r.POST("/blacklist/del",user_handler.BlackListDel)
@@ -49,13 +50,16 @@ func main() {
 	r.POST("/goods/cart/update",cart_handler.UpdateGoodsCartList)
 	r.POST("/order/add",order_handler.AddOrder)
 	r.GET("/order/check",order_handler.CheckAliPay)
+	r.POST("/order/comment/add",order_handler.AddOrderComment)
+	r.POST("/order/comment/del",order_handler.DelOrderComment)
+	r.POST("/trade/add",order_handler.AddTrade)
+	r.GET("/m78/:ww",shorturl_handler.GetLongUrl)
+	r.POST("/shorturl/add",shorturl_handler.AddShortUrl)
 	//r.GET("/user/:name/*action", func(c *gin.Context) {
 	//	name := c.Param("name")
 	//	action := c.Param("action")
 	//	message := name + " is " + action
 	//	c.String(http.StatusOK, message)
 	//})
-	fmt.Println(user_dao.Rds.GetUserToken("foo"))
-	fmt.Println(user_dao.DB.GetUserInfoByUid(1))
 	r.Run() // listen and serve on 0.0.0.0:8080
 }
