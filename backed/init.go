@@ -3,6 +3,7 @@ package backed
 import (
 	"LuXiStores/common"
 	"context"
+	"fmt"
 	"time"
 )
 
@@ -22,6 +23,7 @@ func RenewTicker(ctx context.Context){
 }
 func NotifyRelationRenewProcess(ctx context.Context){
 	timestamp := time.Now().Unix()-(15*60)
+	fmt.Println(time.Unix(timestamp,0).Format("20060102150405"))
 	common.MysqlClient.UpdateOrderStatus("mmall_order",	time.Unix(timestamp,0).Format("20060102150405"))
 
 }

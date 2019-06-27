@@ -79,6 +79,22 @@ func (r *RedisClient) Expire(key string, expiration time.Duration) *redis.BoolCm
 	return ret
 
 }
+
+func (r *RedisClient) DecrBy(key string,decrement int64) *redis.IntCmd{
+	ret := r.Rds.DecrBy(key,decrement)
+	doLog(ret)
+	return ret
+}
+func (r *RedisClient) SetNx(key string,value interface{}) *redis.BoolCmd{
+	ret := r.Rds.SetNX(key,value,time.Second*3600)
+	doLog(ret)
+	return ret
+}
+func (r *RedisClient) Exist(key string) *redis.IntCmd{
+	ret := r.Rds.Exists(key)
+	doLog(ret)
+	return ret
+}
 //func (r *RedisClient) ExpireAt(key string, tm time.Time) *redis.BoolCmd {
 //	return
 //}

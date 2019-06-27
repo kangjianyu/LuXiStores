@@ -11,11 +11,11 @@ import (
 	"time"
 )
 type SignUp struct {
-	Username string
-	Password string
-	Email string
-	VerifyCode string
-	Phone string
+	Username string `json:"username"`
+	Password string `json:"password"`
+	Email string 	`json:"email"`
+	VerifyCode string `json:"verify_code"`
+	Phone string `json:"phone"`
 }
 
 func UserSignUp(c *gin.Context){
@@ -46,8 +46,6 @@ func UserSignUp(c *gin.Context){
 		Email:      signupData.Email,
 		Status:     0,
 		Phone:      signupData.Phone,
-		CreateTime:time.Now(),
-		UpdateTime:time.Now(),
 	}
 	if err := user_dao.DB.AddUserInfo(info);err!=nil{
 		common.BuildResp(c,nil,common.ErrInternal)

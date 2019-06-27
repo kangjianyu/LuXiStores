@@ -14,16 +14,41 @@ type iDB interface {
 	GetUserInfoByUid(uid uint64) (UserInfo, error)
 	GetUserProfileByUid(uid uint64) (UserProfile,error)
 	UpdateUserProfile(uid uint64,nick string,birthDate uint64,gender uint8) error
+	AddUserProfile(uid uint64,nick string,birthDate uint64,gender uint8) error
 	UpdateUserInfo(uid uint64,password string,email string,phone string) error
 	GetMaxUid() (uint64,error)
+	GetUserSuperInfo(uid uint64) (UserSuper,error)
+	AddUserSuperInfo(uid uint64,StartTime int64,EndTime int64,renew int64) error
 }
 
 type dbimpl struct {
 }
 
 
+//用户会员
+func (dbimpl) GetUserSuperInfo(uid uint64) (UserSuper, error) {
+	tablename := (&UserSuper{}).TableName()
+	info := UserSuper{}
+	ret := common.MysqlClient.GetUserSuperInfo(tablename,uid,&info)
+	return info,ret.Error
+
+}
+
+func (dbimpl) AddUserSuperInfo(uid uint64, StartTime int64, EndTime int64, renew int64) error {
+	tablename := (&UserSuper{}).TableName()
+	ret := common.MysqlClient.InsertUserSuperInfo(tablename,uid,StartTime,EndTime,renew)
+	return ret.Error
+
+}
 
 //用户资料
+
+func (dbimpl) AddUserProfile(uid uint64, nick string, birthDate uint64, gender uint8) error {
+	tablename := (&UserProfile{}).TableName()
+	ret := common.MysqlClient.InsertUserProfile(tablename,uid,nick,birthDate,gender)
+	return ret.Error
+
+}
 func (dbimpl) UpdateUserProfile(uid uint64,nick string,birthDate uint64,gender uint8) error {
 	tablename := (&UserProfile{}).TableName()
 	err := common.MysqlClient.UpdateUserProfile(tablename,uid ,nick,birthDate,gender).Error

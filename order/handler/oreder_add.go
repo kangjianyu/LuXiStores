@@ -4,7 +4,7 @@ import (
 	"LuXiStores/common"
 	"LuXiStores/goods/dao"
 	"LuXiStores/order/dao"
-	"bytes"
+	"LuXiStores/receiver/dao"
 	"crypto"
 	"crypto/rand"
 	"crypto/rsa"
@@ -32,6 +32,7 @@ type Alipay struct {
 type AddOrderData struct {
 	UserId uint64 `json:"user_id"`
 	ProductId uint64 `json:"product_id"`
+	Count 	uint64 `json:"count"`
 }
 func AddOrder(c *gin.Context){
 	inData,err := ioutil.ReadAll(c.Request.Body)
@@ -41,19 +42,34 @@ func AddOrder(c *gin.Context){
 		common.BuildResp(c,nil,common.ErrParam)
 		return
 	}
-
-
+	if Data.Count==0{
+		Data.Count = 1
+	}
 	Uuid,err := uuid.GenerateUUID()
+	//商品信息
 	goodsinfo ,err := goods_dao.DB.GetGoodInfoDetail(Data.ProductId)
 	if err!=nil{
 		common.BuildResp(c,nil,common.ErrParam)
 		return
 	}
-	alipayKey := fmt.Sprintf("alipay_user=%d_product=%d_price=%.2f_%s",Data.UserId,Data.ProductId,goodsinfo.Price,Uuid)
+	//获取地址
+	receiverinfo,err := receiver_dao.DB.GetDefaultGoodsReceiverAddress(Data.UserId)
+	//获取订单号
+	orderId,err := getNextOrderId()
+
+	//生成签名
+	alipayKey := fmt.Sprintf("alipay_user=%d_product=%d_price=%.2f_amount=%d_order=%d_receiver=%d_%s",Data.UserId,Data.ProductId,goodsinfo.Price,Data.Count,orderId,receiverinfo.Id,Uuid)
 	header,sign,err := alipaySign(goodsinfo.Name,Data.UserId,Data.ProductId,goodsinfo.Price)
 	err = order_dao.Rds.SetOrderId(alipayKey,sign,time.Minute*15)
-	orderId,err := getNextOrderId()
-	err = order_dao.DB.AddOrder(alipayKey,uint64(orderId),Data.ProductId)
+	//redis减少库存
+	val,err := decreaseStock(Data.ProductId,Data.Count,Data.UserId)
+	if err!=nil|| val<0 {
+		common.BuildResp(c, nil, common.ErrInternal)
+		return
+	}
+
+	//添加订单
+	err = order_dao.DB.AddOrder(alipayKey,uint64(orderId),Data.ProductId,receiverinfo.Address)
 	if err!=nil{
 		common.BuildResp(c,nil,common.ErrInternal)
 		return
@@ -64,6 +80,22 @@ func AddOrder(c *gin.Context){
 
 }
 
+func decreaseStock(productId uint64,count uint64 ,uid uint64)(int64,error){
+	if count == 0{
+		count = 1
+	}
+	if true,err:=order_dao.Rds.CheckProductId("product_"+strconv.Itoa(int(productId)));err!=nil||true!=1{
+		info,err := goods_dao.DB.GetGoodInfoDetail(productId)
+		if err!=nil||info.Id==0{
+			return 0,err
+		}
+		val,err := order_dao.Rds.SetStock("product_"+strconv.Itoa(int(productId)),info.Stock)
+		val,err =order_dao.Rds.DecreaseStock("product_"+strconv.Itoa(int(productId)),int64(count))
+		return val,err
+	}
+	val,err :=order_dao.Rds.DecreaseStock("product_"+strconv.Itoa(int(productId)),int64(count))
+	return val,err
+}
 
 func alipaySign(title string,uid uint64,productId uint64,price float64) (header map[string]interface{},sign string,err error){
 	header = make(map[string]interface{})
@@ -127,37 +159,4 @@ func getNextOrderId()(int64,error){
 	}
 	Id,err := strconv.Atoi(times+"0000")
 	return int64(Id)+ret.Val(),err
-}
-func formatKey(raw, prefix, suffix string) (result []byte) {
-	if raw == "" {
-		return nil
-	}
-	raw = strings.Replace(raw, prefix, "", 1)
-	raw = strings.Replace(raw, suffix, "", 1)
-	raw = strings.Replace(raw, " ", "", -1)
-	raw = strings.Replace(raw, "\n", "", -1)
-	raw = strings.Replace(raw, "\r", "", -1)
-	raw = strings.Replace(raw, "\t", "", -1)
-
-	var ll = 64
-	var sl = len(raw)
-	var c = sl / ll
-	if sl%ll > 0 {
-		c = c + 1
-	}
-
-	var buf bytes.Buffer
-	buf.WriteString(prefix + "\n")
-	for i := 0; i < c; i++ {
-		var b = i * ll
-		var e = b + ll
-		if e > sl {
-			buf.WriteString(raw[b:])
-		} else {
-			buf.WriteString(raw[b:e])
-		}
-		buf.WriteString("\n")
-	}
-	buf.WriteString(suffix)
-	return buf.Bytes()
 }

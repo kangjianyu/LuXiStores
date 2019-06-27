@@ -17,6 +17,7 @@ type ForgetData struct {
 	Email string
 	Phone string
 }
+
 func ForgetPassword(c *gin.Context){
 	data,err := ioutil.ReadAll(c.Request.Body)
 	forgetdata := ForgetData{}

@@ -20,8 +20,8 @@ func GetGoodsInfo(c *gin.Context){
 		common.BuildResp(c,nil,common.ErrParam)
 		return
 	}
-	sortlist := make([]string,2)
 
+	sortlist := make([]string,2)
 	if sortlist = strings.Split(sortOrder,"_");len(sortlist)>=2&&sortlist[1] == "desc"{
 		sortOrder = sortlist[0]+" desc"
 	}else{

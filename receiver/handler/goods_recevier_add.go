@@ -4,7 +4,6 @@ import (
 	"LuXiStores/common"
 	receiver_dao "LuXiStores/receiver/dao"
 	"encoding/json"
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
 )
@@ -30,7 +29,6 @@ func AddGoodsReceiverAddress (c *gin.Context){
 
 	if Data.IsDefault==1{
 		err := receiver_dao.DB.ChangeDefaultGoodsReceiverAddress(Data.Uid)
-		fmt.Println("有到这里")
 		err = receiver_dao.DB.AddGoodsReceiverAddress(Data.Uid,Data.Nick,Data.Tel,Data.Mobile,Data.Province,Data.City,Data.District,Data.Address,Data.IsDefault)
 		if err!=nil{
 			common.BuildResp(c,nil,common.ErrInternal)

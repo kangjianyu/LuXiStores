@@ -30,6 +30,24 @@ func MysqlLog(ret *gorm.DB) {
 		log.Error("(REDIS %s)|%s|err:%s",callerName,ret.Error)
 	}
 }
+
+//商品收藏
+func (m *MysqlClient) InsertGoodsCollection(table string,uid int64,productId int64) *gorm.DB{
+	sql := fmt.Sprintf("INSERT INTO `%s` (`uid`,`product_id`) VALUES (%d,%d)",table,uid,productId)
+	ret := m.DB.LogMode(true).Exec(sql)
+	return ret
+}
+func(m *MysqlClient) DelGoodsCollection(table string,uid int64,productId int64)*gorm.DB{
+	sql := fmt.Sprintf("DELETE FROM `%s` WHERE `uid` = %d AND `product_id` = %d",table,uid,productId)
+	ret := m.DB.LogMode(true).Exec(sql)
+	return ret
+}
+
+func(m *MysqlClient) GetGoodsCollectionByUid(table string,uid int64,user interface{}) *gorm.DB{
+	ret := m.DB.LogMode(true).Table(table).Where("uid=?",uid).Find(user)
+	return ret
+}
+
 //短链接
 func (m *MysqlClient) InsertShortUrl(table string,shorturl string,longurl string)*gorm.DB{
 	sql := fmt.Sprintf("INSERT INTO `%s` ( `short_url`,`long_url`) VALUES ('%s','%s')",table,shorturl,longurl)
@@ -45,6 +63,7 @@ func (m *MysqlClient) GetLongUrl(table string,shorturl string,user interface{}) 
 //	ret := m.DB.Table(table).LogMode(true)
 //
 //}
+
 //订单
 func (m *MysqlClient) UpdateOrderStatus(table string,nowtime string) *gorm.DB{
 	sql := fmt.Sprintf("UPDATE `%s` SET `status`= %d WHERE `create_time` <= %s",table,4,nowtime)
@@ -72,14 +91,25 @@ func (m *MysqlClient) GetOrderDetail(tablee string,orderId uint64,uid uint64,use
 	return ret
 }
 
-func (m *MysqlClient) InsertOrder(table string,tradeId string,orderId uint64,productId uint64) *gorm.DB{
-	sql := fmt.Sprintf("INSERT INTO `%s` ( `id`,`trade_id`,`product_id`) VALUES (%d,'%s',%d)",table,orderId,tradeId,productId)
+func (m *MysqlClient) InsertOrder(table string,tradeId string,orderId uint64,productId uint64,receiver string) *gorm.DB{
+	sql := fmt.Sprintf("INSERT INTO `%s` ( `id`,`trade_id`,`product_id`,`address`) VALUES (%d,'%s',%d,'%s')",table,orderId,tradeId,productId,receiver)
 	ret := m.DB.LogMode(true).Exec(sql)
 	return ret
 }
 
 func (m *MysqlClient) GetMaxOrderId(table string,user interface{}) *gorm.DB{
 	ret := m.DB.Table(table).LogMode(true).Order("`id` desc ").Limit(1).First(user)
+	return ret
+}
+//交易
+func (m *MysqlClient) InsertTrade(table string,orderId int64, tradeId string, userId int64, productId int64, receiverId int64, price float64, amounts int64) *gorm.DB{
+	sql := fmt.Sprintf("INSERT INTO `%s` (`order_id`,`trade_id`,`uid`,`product_id`,`receiver_id`,`price`,`amount`) VALUES(%d,'%s',%d,%d,%d,%0.2f,%d)",table,orderId,tradeId,userId,productId,receiverId,price,amounts)
+	ret := m.DB.LogMode(true).Exec(sql)
+	return ret
+}
+func (m *MysqlClient) UpdateOrderInfo(table string,orderId int64) *gorm.DB{
+	sql := fmt.Sprintf("UPDATE `%s` SET `status`=1 WHERE `id`=%d ",table,orderId)
+	ret := m.DB.LogMode(true).Exec(sql)
 	return ret
 }
 //购物车
@@ -145,7 +175,10 @@ func (m *MysqlClient) GetGoodsInfo(table string,categoryId int64,count int64,off
 	ret := m.DB.Table(table).LogMode(true).Select("id,name,price,main_image,stock").Where("category_id=?",categoryId).Limit(count).Offset(offset).Order(sortorder).Find(users)
 	return ret
 }
-
+func (m *MysqlClient) GetSomeGoodsInfoDetail(table string,user interface{},count int64,offset int64,productId ...int64)*gorm.DB{
+	ret := m.DB.LogMode(true).Table(table).Where("id in (?)",productId).Limit(count).Offset(offset).Find(user)
+	return ret
+}
 func (m *MysqlClient) GetGoodsInfoDetail(table string,id uint64,user interface{}) *gorm.DB{
 	ret := m.DB.Table(table).LogMode(true).Where("id=?",id).First(user)
 	return ret
@@ -213,6 +246,11 @@ func (m *MysqlClient) GetMaxUid(table string,user interface{}) *gorm.DB{
 	return ret
 }
 //用户资料
+func (m *MysqlClient) InsertUserProfile(table string,uid uint64, nick string, birthDate uint64, gender uint8)*gorm.DB{
+	sql := fmt.Sprintf("INSERT INTO `%s` (`uid`,`nick`,`birth_date`,`gender`) VALUES(%d,'%s',%d,%d)",table,uid,nick,birthDate,gender)
+	ret := m.DB.LogMode(true).Exec(sql)
+	return ret
+}
 func (m *MysqlClient) GetUserProfileByUid(table string,uid uint64,user interface{}) *gorm.DB {
 	ret := m.DB.Table(table).Where("uid=?",uid).First(user)
 	return ret
@@ -222,8 +260,16 @@ func (m *MysqlClient) UpdateUserProfile(table string,uid uint64,nick string,birt
 	ret := m.DB.LogMode(true).Exec(sql)
 	return ret
 }
-
-
+//用户会员
+func (m *MysqlClient) GetUserSuperInfo(table string,uid uint64,user interface{}) *gorm.DB{
+	ret := m.DB.Table(table).LogMode(true).Where("uid=?",uid).First(user)
+	return ret
+}
+func (m *MysqlClient) InsertUserSuperInfo(table string,uid uint64,StartTime int64,EndTime int64,renew int64) *gorm.DB{
+	sql := fmt.Sprintf("INSERT INTO `%s` (`uid`,`start_time`,`end_time`) VALUES (%d,FROM_UNIXTIME( %d, '%s'),FROM_UNIXTIME( %d, '%s')) ON DUPLICATE  KEY UPDATE `end_time` = DATE_ADD(`end_time`, INTERVAL %d DAY) ",table,uid,StartTime,"%Y%m%d",EndTime,"%Y%m%d",renew)
+	ret := m.DB.LogMode(true).Exec(sql)
+	return ret
+}
 //func (m *MysqlClient) Ping() {
 //	ret := m.DB.Table("userprofile")
 //}
