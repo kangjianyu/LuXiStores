@@ -5,6 +5,8 @@ import (
 	"LuXiStores/common"
 	"github.com/gin-gonic/gin"
 	"strconv"
+	log"github.com/jeanphorn/log4go"
+
 )
 
 
@@ -14,6 +16,7 @@ type GetGoodsCartListData struct {
 	Limit uint64	`json:"count"`
 }
 func GetGoodsCartList(c *gin.Context){
+	prefix := "GetGoodsCartList"
 	uidstr := c.Query("uid")
 	offsetstr := c.Query("offset")
 	limitstr := c.Query("limit")
@@ -21,6 +24,7 @@ func GetGoodsCartList(c *gin.Context){
 	offset,err := strconv.Atoi(offsetstr)
 	limit ,err := strconv.Atoi(limitstr)
 	if err!=nil||uid<=0||offset<0{
+		log.Warn(prefix,"input data error:%v",err)
 		common.BuildResp(c,nil,common.ErrParam)
 		return
 	}
@@ -31,6 +35,7 @@ func GetGoodsCartList(c *gin.Context){
 
 	infos,err := cart_dao.DB.GetGoodsCartList(uint64(uid),uint64(limit),uint64(offset))
 	if err!=nil{
+		log.Warn(prefix,"get error uid:%d",uid)
 		common.BuildResp(c,nil,common.ErrInternal)
 		return
 	}
@@ -43,6 +48,7 @@ func GetGoodsCartList(c *gin.Context){
 		"has_next":has_next,
 		"offset":offset+len(infos),
 	}
+	log.Info(prefix,"succeed uid:%d",uid)
 	common.BuildResp(c,data,nil)
 	return
 }

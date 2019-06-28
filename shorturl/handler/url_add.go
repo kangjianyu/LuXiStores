@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/gin-gonic/gin"
+	log"github.com/jeanphorn/log4go"
 	"io/ioutil"
 )
 type AddShortUrlData struct {
@@ -14,10 +15,12 @@ type AddShortUrlData struct {
 }
 
 func AddShortUrl(c *gin.Context){
+	prefix := "AddShortUrl"
 	indata,err := ioutil.ReadAll(c.Request.Body)
 	Data := AddShortUrlData{}
 	err = json.Unmarshal(indata,&Data)
 	if Data.LongUrl==""||err!=nil{
+		log.Warn(prefix,"input data error:%v",err)
 		common.BuildResp(c,nil,common.ErrParam)
 		return
 	}
@@ -26,10 +29,12 @@ func AddShortUrl(c *gin.Context){
 	shorturl := fmt.Sprintf("kjy%d",urlid)
 	err = shorturl_dao.DB.AddShortUrl(shorturl,Data.LongUrl)
 	if err!=nil{
+		log.Warn(prefix,"insert error:%v,url:%s",err,Data.LongUrl)
 		common.BuildResp(c,nil,common.ErrInternal)
 		return
 	}
-	data := fmt.Sprintf("http://127.0.0.1:8080/m78/%s",shorturl)
+	data := fmt.Sprintf("/m78/%s",shorturl)
+	log.Info(prefix,"add succeed url:%s",data)
 	common.BuildResp(c,data,nil)
 	return
 

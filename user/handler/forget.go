@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/gin-gonic/gin"
+	log "github.com/jeanphorn/log4go"
 	"io/ioutil"
 	"math/rand"
 	"time"
@@ -23,27 +24,33 @@ func ForgetPassword(c *gin.Context){
 	forgetdata := ForgetData{}
 	err = json.Unmarshal(data,&forgetdata)
 	if err!=nil||forgetdata.Username==""||forgetdata.Email==""||forgetdata.Phone==""{
+		log.Warn("input error %v ",forgetdata)
 		common.BuildResp(c,nil,common.ErrParam)
 		return
 	}
 
 	userinfo ,err :=user_dao.DB.GetUserInfoByUsername(forgetdata.Username)
 	if err!=nil||userinfo.Uid==0{
+		log.Error("user not exist %v",userinfo)
 		common.BuildResp(c,nil,common.ErrAuth)
 		return
 	}
 	if userinfo.Phone!=forgetdata.Phone||userinfo.Email!=forgetdata.Email{
+		log.Info("check error phone:%s,email:%s",userinfo.Phone,userinfo.Email)
 		common.BuildResp(c,nil,common.ErrAuth)
 		return
 	}
 	token,err :=SetUpdateToken(userinfo.Username,userinfo.Uid)
 	if err!=nil{
+		log.Error("set token error:%v",err)
 		common.BuildResp(c,nil,common.ErrInternal)
 		return
 	}
 
 	c.SetCookie("update_token", token, 0, "/", "", false, false)
+	log.Info("update password succeed %s",userinfo.Username)
 	common.BuildResp(c,gin.H{"update_token": token,},nil)
+
 	return
 
 }
@@ -54,7 +61,7 @@ func SetUpdateToken(username string,uid uint64)(token string,err error){
 	key := fmt.Sprintf("update_token_%s_%d",username,random)
 	err = user_dao.Rds.SetUpdateToken(key,uid,1000*time.Second)
 	if err!=nil{
-
+		log.Warn("set updateToken error %v",err)
 	}
 	return key,err
 }

@@ -5,6 +5,7 @@ import (
 	"LuXiStores/user/dao"
 	"encoding/json"
 	"github.com/gin-gonic/gin"
+	log "github.com/jeanphorn/log4go"
 	"github.com/mojocn/base64Captcha"
 	"io/ioutil"
 	"math/rand"
@@ -25,16 +26,19 @@ func UserSignUp(c *gin.Context){
 	err = json.Unmarshal(data,&signupData)
 	//入参错误
 	if err!=nil||signupData.VerifyCode==""||signupData.Username==""||signupData.Phone==""||signupData.Email==""||signupData.Password==""{
+		log.Info("input data error%v",err)
 		common.BuildResp(c,nil,common.ErrParam)
 		return
 	}
 	//验证码错误
 	if !base64Captcha.VerifyCaptcha(verifyId, signupData.VerifyCode) {
+		log.Info("VerifyCaptcha error%s",signupData.VerifyCode)
 		common.BuildResp(c, nil, common.ErrCaptcha)
 		return
 	}
 	//用户名验证
 	if !CheckUserName(signupData.Username){
+		log.Info("username has exist %s",signupData.Username)
 		common.BuildResp(c,nil,common.ErrParam)
 		return
 	}
@@ -48,9 +52,11 @@ func UserSignUp(c *gin.Context){
 		Phone:      signupData.Phone,
 	}
 	if err := user_dao.DB.AddUserInfo(info);err!=nil{
+		log.Warn("signup error %v",err)
 		common.BuildResp(c,nil,common.ErrInternal)
 		return
 	}
+	log.Info("signup succeed name%s",signupData.Username)
 	common.BuildResp(c,nil,nil)
 	return
 }

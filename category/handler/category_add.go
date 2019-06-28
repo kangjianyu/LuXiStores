@@ -7,23 +7,27 @@ import (
 	"errors"
 	"fmt"
 	"github.com/gin-gonic/gin"
+	log"github.com/jeanphorn/log4go"
 	"io/ioutil"
 )
-type CategoryAddData struct {
+type AddCategoryData struct {
 	Name string  			`json:"name"`
 	ParentId	int64		`json:"parent_id"`
 }
-func CategoryAdd(c *gin.Context){
+func AddCategory(c *gin.Context){
+	prefix := "AddCategory"
 	data ,err := ioutil.ReadAll(c.Request.Body)
-	categoryUpdateData := CategoryAddData{}
+	categoryUpdateData := AddCategoryData{}
 	err = json.Unmarshal(data,&categoryUpdateData)
 	if err!=nil||categoryUpdateData.Name==""||categoryUpdateData.ParentId==0{
+		log.Warn(prefix,"input data error:%v",err)
 		common.BuildResp(c,nil,common.ErrParam)
 		return
 	}
 
 	key,level,name,err := CategoryForNow(categoryUpdateData.ParentId)
 	if err!=nil||name==""{
+		log.Warn(prefix,"node is invalid error:%v,categoryId:%d",err)
 		common.BuildResp(c,nil,errors.New("父节点无效"))
 		return
 	}
@@ -36,9 +40,11 @@ func CategoryAdd(c *gin.Context){
 	}
 	err = category_dao.DB.AddGoodsType(info)
 	if err!=nil{
+		log.Warn(prefix,"add node error:%v,nodename:%d",err,categoryUpdateData.Name)
 		common.BuildResp(c,nil,common.ErrInternal)
 		return
 	}
+	log.Info(prefix,"")
 	common.BuildResp(c,nil,nil)
 	return
 

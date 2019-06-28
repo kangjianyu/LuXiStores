@@ -5,6 +5,7 @@ import (
 	"LuXiStores/common"
 	"encoding/json"
 	"github.com/gin-gonic/gin"
+	log"github.com/jeanphorn/log4go"
 	"io/ioutil"
 )
 type CategoryUpdateData struct {
@@ -18,20 +19,23 @@ type CategoryUpdateData struct {
 }
 
 func CategoryUpdate(c *gin.Context){
+	prefix := "CategoryUpdate"
 	data,err:=ioutil.ReadAll(c.Request.Body)
 	Data := CategoryUpdateData{}
 	err = json.Unmarshal(data,&Data)
 	if err!=nil||Data.Name==""{
+		log.Warn(prefix,"input data error:%v",err)
 		common.BuildResp(c,nil,common.ErrParam)
 		return
 	}
 
 	err = category_dao.DB.UpdateGoodsType(Data.CategoryId,Data.Name,Data.ParentId,Data.Status,Data.SortOrder,Data.Key,Data.Level)
 	if err!=nil{
+		log.Warn(prefix,"node update error:%v,node:%v",err,Data)
 		common.BuildResp(c,nil,common.ErrInternal)
 		return
 	}
-
+	log.Info(prefix,"succeed node data:%v",Data)
 	common.BuildResp(c,nil,nil)
 	return
 }

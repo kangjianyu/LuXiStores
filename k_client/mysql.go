@@ -43,8 +43,11 @@ func(m *MysqlClient) DelGoodsCollection(table string,uid int64,productId int64)*
 	return ret
 }
 
-func(m *MysqlClient) GetGoodsCollectionByUid(table string,uid int64,user interface{}) *gorm.DB{
-	ret := m.DB.LogMode(true).Table(table).Where("uid=?",uid).Find(user)
+func(m *MysqlClient) GetGoodsCollectionByUid(goodsTable string,collectionTable string,uid int64,offset int64,limit int64,user interface{}) *gorm.DB{
+	//query := fmt.Sprintf("SELECT `id`,`name`,`main_image`,`price`,`stock`,`status` FROM `%s` WHERE id IN ",goodsTable)
+	//subquery := fmt.Sprintf("(SELECT `product_id` FROM `%s` WHERE uid=%d)",collectionTable,uid)
+	//sql := query+subquery
+	ret := m.DB.LogMode(true).Table(goodsTable).Where("id in (?)",m.DB.Table(collectionTable).Select("product_id").Where("uid=?",uid).QueryExpr()).Limit(limit).Offset(offset).Find(user)
 	return ret
 }
 

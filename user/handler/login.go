@@ -26,30 +26,33 @@ func Login(c *gin.Context) {
 	}
 	// 校验码不正确
 	if !base64Captcha.VerifyCaptcha(verifyId, verify_code) {
+		log.Info("VerifyCaptcha error:%s",verify_code)
 		common.BuildResp(c, nil, common.ErrCaptcha)
 		return
 	}
+
 	userinfo, err := user_dao.DB.GetUserInfoByUsername(username)
-	if err != nil {
-		common.BuildResp(c, nil, common.ErrInternal)
-		return
-	}
 	// 用户不存在
-	if userinfo.Uid == 0 {
+	if err != nil {
+		log.Warn("get userinfo id%s,error:%v,",username,err)
 		common.BuildResp(c, nil, common.ErrAuth)
 		return
 	}
+
 	// 密码错误
 	if password != userinfo.Password {
+		log.Info("password error:%d",password)
 		common.BuildResp(c, nil, common.ErrAuth)
 		return
 	}
 
 	token,  err := SetToken(userinfo.Uid)
 	if err != nil{
+		log.Error("set redis error:%v,uid:%d",err,userinfo.Uid)
 		return
 	}
 	c.SetCookie("sessionid", token, 0, "/", "", false, false)
+	log.Info("login succeed %s",username)
 	common.BuildResp(c, gin.H{"token": token}, nil)
 	return
 }
@@ -64,11 +67,11 @@ func SetToken(userid uint64) (token string,  err error) {
 	}
 	struid := strconv.FormatUint(userid, 10)
 	err = user_dao.Rds.SetUserToken(Uuid, struid, time.Hour*24*7)
-	token = Uuid
 	if err != nil {
 		return
 	}
-	log.Info("set cookie in redis %s")
+	token = Uuid
+	log.Info("set cookie in redis %s",Uuid)
 	return
 }
 

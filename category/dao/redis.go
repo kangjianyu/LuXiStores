@@ -1,6 +1,9 @@
 package category_dao
 
-import "LuXiStores/common"
+import (
+	"LuXiStores/common"
+	"time"
+)
 
 var Rds iRedis = redisImpl{}
 type iRedis interface {
@@ -15,7 +18,7 @@ func (redisImpl) GetCategoryInfo(key string) (string, error) {
 }
 
 func (redisImpl) SetCategoryInfo(key string,value interface{}) (error) {
-	ret := common.RedisClient.Rds.Set(key,value,-1)
+	ret := common.RedisClient.Rds.Set(key,value,time.Second*5*60)
 	return ret.Err()
 }
 

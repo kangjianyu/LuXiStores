@@ -4,6 +4,7 @@ package user_handler
 import (
 	"LuXiStores/common"
 	"github.com/gin-gonic/gin"
+	log"github.com/jeanphorn/log4go"
 	"github.com/mojocn/base64Captcha"
 	"sync"
 )
@@ -32,6 +33,7 @@ func GenerateCaptcha(c *gin.Context) {
 	//session.Set("captchaId", captchaId)
 	data := gin.H{"base64png": base64Png,}
 	c.SetCookie("verifyid", verify_id, 0, "/", "", false, false)
+	log.Info("grnerate captcha succeed id:%s",verify_id)
 	common.BuildResp(c,data,nil)
 }
 

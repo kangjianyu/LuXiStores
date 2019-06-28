@@ -15,7 +15,7 @@ type iBD interface {
 	DelGoodsInfo(id uint64)error
 	AddGoodsCollection(uid int64,productId int64) error
 	DelGoodsCollection(uid int64,productId int64) error
-	GetGoodsCollectionByUid(uid int64) ([]GoodsCollection,error)
+	GetGoodsCollectionByUid(uid int64,offset int64,limit int64) ([]GoodsInfoSlice,error)
 	GetSomeGoodsCollection(count int64,offset int64,productId ...int64) ([]GoodsInfoSlice,error)
 }
 
@@ -44,10 +44,11 @@ func (dbimpl) DelGoodsCollection(uid int64, productId int64) error {
 
 }
 
-func (dbimpl) GetGoodsCollectionByUid(uid int64) ([]GoodsCollection, error) {
-	tablename := (&GoodsCollection{}).TableName()
-	info := []GoodsCollection{}
-	ret := common.MysqlClient.GetGoodsCollectionByUid(tablename,uid,&info)
+func (dbimpl) GetGoodsCollectionByUid(uid int64,offset int64,limit int64) ([]GoodsInfoSlice, error) {
+	goodsTable := (&GoodsInfo{}).TableName()
+	collectionTable := (&GoodsCollection{}).TableName()
+	info := []GoodsInfoSlice{}
+	ret := common.MysqlClient.GetGoodsCollectionByUid(goodsTable,collectionTable,uid,offset,limit ,&info)
 	return info,ret.Error
 }
 

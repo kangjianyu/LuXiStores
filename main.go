@@ -43,7 +43,7 @@ func main() {
 	//商品分类
 	r.GET("/goods/category", category_handler.CategoryForNext)
 	r.PUT("/goods/category", category_handler.CategoryUpdate)
-	r.POST("/goods/category", category_handler.CategoryAdd)
+	r.POST("/goods/category", category_handler.AddCategory)
 	//商品信息
 	r.GET("/goods/list",goods_handler.GetGoodsInfo)
 	r.GET("/goods/info",goods_handler.GetGoodsInfoDetail)
@@ -86,5 +86,5 @@ func main() {
 	//	message := name + " is " + action
 	//	c.String(http.StatusOK, message)
 	//})
-	r.Run() // listen and serve on 0.0.0.0:8080
+	r.Run("127.0.0.1:8001") // listen and serve on 0.0.0.0:8080
 }
