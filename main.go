@@ -86,5 +86,8 @@ func main() {
 	//	message := name + " is " + action
 	//	c.String(http.StatusOK, message)
 	//})
+	//kafka.SaramaProducer()
+
 	r.Run("127.0.0.1:8001") // listen and serve on 0.0.0.0:8080
+
 }

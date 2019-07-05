@@ -30,7 +30,31 @@ func MysqlLog(ret *gorm.DB) {
 		log.Error("(REDIS %s)|%s|err:%s",callerName,ret.Error)
 	}
 }
-
+//商品回库
+func (m *MysqlClient) GoodsTrackStock(goodsTable string,orderTable string, nowTime string) error{
+	tx := m.DB.Begin()
+	if err:=tx.Error;err!=nil{
+		log.Error(err)
+		return err
+	}
+	updatesql := fmt.Sprintf("update `%s` as a, `%s` as b set a.stock = a.stock+b.amount,b.status = 4 where a.id = b.product_id and b.status = 1 and b.create_time <= %s",orderTable,goodsTable,nowTime)
+	updateresult := tx.Exec(updatesql)
+	if err:=updateresult.Error;err!=nil{
+		log.Error(err)
+		tx.Rollback()
+		return err
+	}
+	if updateresult.RowsAffected==0{
+		log.Warn("updateresult.RowsAffected==0,break")
+		tx.Rollback()
+		return nil
+	}
+	if err:=tx.Commit().Error;err!=nil{
+		log.Error("commit error")
+		return err
+	}
+	return nil
+}
 //商品收藏
 func (m *MysqlClient) InsertGoodsCollection(table string,uid int64,productId int64) *gorm.DB{
 	sql := fmt.Sprintf("INSERT INTO `%s` (`uid`,`product_id`) VALUES (%d,%d)",table,uid,productId)

@@ -29,7 +29,9 @@ func (redisImpl) CheckProductId(key string) (int64,error) {
 
 func (redisImpl) SetStock(productId string, amount int64) (int64,error) {
 	ret := common.RedisClient.IncrBy(productId,amount)
-	return ret.Val(),ret.Err()
+	err := ret.Err()
+	err = common.RedisClient.Expire(productId,time.Second*3).Err()
+	return ret.Val(),err
 }
 
 func (redisImpl) GetMaxUid(key string,value int64) (int64, error) {

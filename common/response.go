@@ -36,6 +36,8 @@ func BuildResp(c *gin.Context, data interface{}, err error) map[string]interface
 	if err == nil {
 		err = ErrIsNil
 	}
+	c.Header("Access-Control-Allow-Origin", "*")
+	c.Header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
 	_, exist := errMap[err]
 	if !exist {
 		err = ErrInternal
