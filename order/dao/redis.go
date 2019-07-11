@@ -14,8 +14,14 @@ type iRedis interface {
 	SetStock(productId string,amount int64)(int64,error)
 	CheckProductId(key string) (int64,error)
 	GetOrderId(key string) (string,error)
+	DelOrderId(key string)error
 }
 type redisImpl struct{}
+
+func (redisImpl) DelOrderId(key string) error {
+	ret := common.RedisClient.Del(key)
+	return ret.Err()
+}
 
 func (redisImpl) GetOrderId(key string) (string, error) {
 	ret := common.RedisClient.Get(key)
@@ -41,7 +47,9 @@ func (redisImpl) GetMaxUid(key string,value int64) (int64, error) {
 
 func (redisImpl) DecreaseStock(productId string, decrement int64) (int64,error) {
 	ret := common.RedisClient.DecrBy(productId,decrement)
-	return ret.Val(),ret.Err()
+	err := ret.Err()
+	err = common.RedisClient.Expire(productId,time.Second*3).Err()
+	return ret.Val(),err
 }
 
 func (redisImpl) SetOrderId(key string,values string,TTl time.Duration) (error) {

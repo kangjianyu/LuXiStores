@@ -20,6 +20,22 @@ type iDB interface {
 	GetUserSuperInfo(uid uint64) (UserSuper,error)
 	AddUserSuperInfo(uid uint64,StartTime int64,EndTime int64,renew int64) error
 }
+var PDB ProfileDB = dbprofile{}
+
+type ProfileDB interface {
+	AddUserExp(userId int64,price float64) error
+
+}
+type dbprofile struct {
+
+
+}
+
+func (dbprofile) AddUserExp(userId int64, price float64) error {
+	tablename := (&UserProfile{}).TableName()
+	ret := common.MysqlClient.UpdateUserProfileExp(tablename,userId,price)
+	return ret.Error
+}
 
 type dbimpl struct {
 }

@@ -17,11 +17,18 @@ type iBD interface {
 	DelGoodsCollection(uid int64,productId int64) error
 	GetGoodsCollectionByUid(uid int64,offset int64,limit int64) ([]GoodsInfoSlice,error)
 	GetSomeGoodsCollection(count int64,offset int64,productId ...int64) ([]GoodsInfoSlice,error)
+	DecreaseStock(productId int64,count int64)(int64,error)
 }
 
 
 type dbimpl struct {
 
+}
+
+func (dbimpl) DecreaseStock(productId int64, count int64) (int64,error) {
+	tablename := (&GoodsInfo{}).TableName()
+	ret := common.MysqlClient.UpdateGoodsStock(tablename,productId,count)
+	return ret.RowsAffected,ret.Error
 }
 
 func (dbimpl) GetSomeGoodsCollection(count int64,offset int64,productId ...int64) ([]GoodsInfoSlice, error) {

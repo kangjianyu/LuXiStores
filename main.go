@@ -6,6 +6,7 @@ import (
 	"LuXiStores/category/handler"
 	"LuXiStores/common"
 	goods_handler "LuXiStores/goods/handler"
+	"LuXiStores/kafka"
 	order_handler "LuXiStores/order/handler"
 	"LuXiStores/receiver/handler"
 	"LuXiStores/shorturl/handler"
@@ -18,6 +19,7 @@ func main() {
 	r := gin.Default()
 	common.Init()
 	backed.InitBackend()
+	kafka.InitConsumer()
 	//黑名单
 	r.POST("/blacklist",user_handler.BlackListAdd)
 	r.DELETE("/blacklist",user_handler.BlackListDel)
@@ -86,8 +88,7 @@ func main() {
 	//	message := name + " is " + action
 	//	c.String(http.StatusOK, message)
 	//})
-	//kafka.SaramaProducer()
-
+	//kafka.ClusterConsumer()
 	r.Run("127.0.0.1:8001") // listen and serve on 0.0.0.0:8080
 
 }

@@ -8,6 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 	log"github.com/jeanphorn/log4go"
 	"io/ioutil"
+	"strings"
 )
 type AddShortUrlData struct {
 	LongUrl string `json:"long_url"`
@@ -26,7 +27,8 @@ func AddShortUrl(c *gin.Context){
 	}
 
 	urlid,err := getNextUrl()
-	shorturl := fmt.Sprintf("kjy%d",urlid)
+	urlstr :=transform(urlid)
+	shorturl := fmt.Sprintf("kjy%s",urlstr)
 	err = shorturl_dao.DB.AddShortUrl(shorturl,Data.LongUrl)
 	if err!=nil{
 		log.Warn(prefix,"insert error:%v,url:%s",err,Data.LongUrl)
@@ -40,6 +42,30 @@ func AddShortUrl(c *gin.Context){
 
 }
 
+
+func transform(urlid int64) string{
+	arr := []string{"0","1","2","3","4","5","6","7","8","9",
+		"a","b","c","d","e","f","g","h","i","j","k","l","n",
+		"m","o","p","q","r","s","t","u","v","w","x","y","z",
+		"A","B","C","D","E","F","G","H","I","J","K","L","N",
+		"M","O","P","Q","R","S","T","U","V","W","X","Y","Z"}
+	res := []string{}
+	for true{
+		s := urlid/62
+		y := urlid%62
+		res = append(res,arr[y])
+		if s==0{
+			break
+		}
+		urlid = s
+	}
+	fmt.Println(res)
+	l := len(res)-1
+	for i:=0;i<l/2;i++{
+		res[i],res[l-i] = res[l-i],res[i]
+	}
+	return strings.Join(res,"")
+}
 
 func getNextUrl() (int64,error){
 	ret := common.RedisClient.IncrBy("short/u",1)

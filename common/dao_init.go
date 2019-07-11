@@ -20,7 +20,7 @@ func Init() {
 }
 func newMysqlClient() (mysqlClient *k_client.MysqlClient) {
 	const prefix = "MysqlInit "
-	dataSourceName := "root:kang123@tcp(120.78.6.36:3306)/luxistores?charset=utf8"
+	dataSourceName := "root:KANG345876@qq.com@tcp(127.0.0.1:3306)/luxistores?charset=utf8"
 	var err error
 	mysql, err := gorm.Open("mysql", dataSourceName)
 	mysqlClient = k_client.NewMysqlClient(mysql)

@@ -2,7 +2,6 @@ package k_client_test
 
 import (
 	"LuXiStores/common"
-	goods_dao "LuXiStores/goods/dao"
 	"fmt"
 	"testing"
 )
@@ -53,11 +52,10 @@ import (
 //	fmt.Println(ret)
 //}
 
-func TestMysqlClient_GetGoodsCollectionByUid(t *testing.T) {
+func TestMysqlLog(t *testing.T) {
 	common.Init()
-	info := []goods_dao.GoodsInfoSlice{}
-	ret :=common.MysqlClient.GetGoodsCollectionByUid("mmall_product","mmall_product_collection",1,&info)
-	fmt.Println(ret.Error,ret.Value)
+	ret := common.MysqlClient.UpdateGoodsStock("mmall_product",23,1)
+	fmt.Println(ret.RowsAffected)
 }
 
 //func TestMysqlClient_GetGoodsInfo(t *testing.T) {

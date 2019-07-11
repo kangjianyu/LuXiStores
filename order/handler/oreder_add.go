@@ -17,6 +17,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/hashicorp/go-uuid"
+	log "github.com/jeanphorn/log4go"
 	"io/ioutil"
 	random "math/rand"
 	"sort"
@@ -32,14 +33,16 @@ type Alipay struct {
 type AddOrderData struct {
 	UserId uint64 `json:"user_id"`
 	ProductId uint64 `json:"product_id"`
-	Count 	uint64 `json:"count"`
+	Count 	int64 `json:"count"`
 }
 func AddOrder(c *gin.Context){
+	prefix := "AddOrder"
 	inData,err := ioutil.ReadAll(c.Request.Body)
 	Data := &AddOrderData{}
 	err = json.Unmarshal(inData,&Data)
 	if err!=nil||Data.UserId<=0||Data.ProductId<=0{
 		common.BuildResp(c,nil,common.ErrParam)
+		log.Warn(prefix,"err:%v",err)
 		return
 	}
 	if Data.Count==0{
@@ -61,10 +64,11 @@ func AddOrder(c *gin.Context){
 	alipayKey := fmt.Sprintf("alipay_user=%d_product=%d_price=%.2f_amount=%d_order=%d_receiver=%d_%s",Data.UserId,Data.ProductId,goodsinfo.Price,Data.Count,orderId,receiverinfo.Id,Uuid)
 	header,sign,err := alipaySign(goodsinfo.Name,Data.UserId,Data.ProductId,goodsinfo.Price)
 	err = order_dao.Rds.SetOrderId(alipayKey,sign,time.Minute*15)
-	//redis减少库存
-	val,err := decreaseStock(Data.ProductId,Data.Count,Data.UserId)
+	//redis,db减少库存
+	val,err := decreaseStock(Data.ProductId,Data.Count)
 	if err!=nil|| val<0 {
 		common.BuildResp(c, nil, common.ErrInternal)
+		log.Warn(prefix,"decreaseStock err:,val:%d",err,val)
 		return
 	}
 
@@ -72,6 +76,7 @@ func AddOrder(c *gin.Context){
 	err = order_dao.DB.AddOrder(alipayKey,uint64(orderId),Data.ProductId,receiverinfo.Address)
 	if err!=nil{
 		common.BuildResp(c,nil,common.ErrInternal)
+		log.Warn(prefix,"add order err:%v",err)
 		return
 	}
 	header["trade_id"] = alipayKey
@@ -80,20 +85,29 @@ func AddOrder(c *gin.Context){
 
 }
 
-func decreaseStock(productId uint64,count uint64 ,uid uint64)(int64,error){
+func decreaseStock(productId uint64,count int64 )(int64,error){
 	if count == 0{
 		count = 1
 	}
-	if true,err:=order_dao.Rds.CheckProductId("product_"+strconv.Itoa(int(productId)));err!=nil||true!=1{
+	fmt.Println("id",productId)
+	if true,err:=order_dao.Rds.CheckProductId("product_"+strconv.Itoa(int(productId)));err==nil&&true==0{
 		info,err := goods_dao.DB.GetGoodInfoDetail(productId)
 		if err!=nil||info.Id==0{
-			return 0,err
+			return -1,err
 		}
-		val,err := order_dao.Rds.SetStock("product_"+strconv.Itoa(int(productId)),info.Stock)
-		val,err =order_dao.Rds.DecreaseStock("product_"+strconv.Itoa(int(productId)),int64(count))
+		val,err := order_dao.Rds.SetStock("product_"+strconv.Itoa(int(productId)),info.Stock-count)
+		ok,err := goods_dao.DB.DecreaseStock(int64(productId),int64(count))
+		if err!=nil||ok==0{
+			return -1,err
+		}
 		return val,err
 	}
-	val,err :=order_dao.Rds.DecreaseStock("product_"+strconv.Itoa(int(productId)),int64(count))
+	val,err := order_dao.Rds.DecreaseStock("product_"+strconv.Itoa(int(productId)),count)
+	ok,err := goods_dao.DB.DecreaseStock(int64(productId),int64(count))
+	if ok==0{
+		return -1,err
+	}
+	fmt.Println(val,">")
 	return val,err
 }
 
@@ -109,7 +123,7 @@ func alipaySign(title string,uid uint64,productId uint64,price float64) (header 
 	header["biz_content"].(map[string]string)["productId"] = "1"
 	header["biz_content"].(map[string]string)["userId"] = "2"
 	header["biz_content"].(map[string]string)["price"] = "0.01"
-	header["biz_content"].(map[string]string)["title"] = "我要买东西"
+	header["biz_content"].(map[string]string)["title"] = title
 	signs := []string{}
 	for i,x := range header{
 		if value,ok := x.(string);ok==true{

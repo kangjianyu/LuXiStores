@@ -30,6 +30,8 @@ func MysqlLog(ret *gorm.DB) {
 		log.Error("(REDIS %s)|%s|err:%s",callerName,ret.Error)
 	}
 }
+
+
 //商品回库
 func (m *MysqlClient) GoodsTrackStock(goodsTable string,orderTable string, nowTime string) error{
 	tx := m.DB.Begin()
@@ -54,6 +56,11 @@ func (m *MysqlClient) GoodsTrackStock(goodsTable string,orderTable string, nowTi
 		return err
 	}
 	return nil
+}
+func (m *MysqlClient) UpdateGoodsStock(table string,productId int64,count int64)*gorm.DB{
+	sql := fmt.Sprintf("UPDATE `%s` SET `stock`= `stock`- %d WHERE `id`=%d and `stock`>=%d",table,count,productId,count)
+	ret := m.DB.LogMode(true).Exec(sql)
+	return ret
 }
 //商品收藏
 func (m *MysqlClient) InsertGoodsCollection(table string,uid int64,productId int64) *gorm.DB{
@@ -287,6 +294,11 @@ func (m *MysqlClient) UpdateUserProfile(table string,uid uint64,nick string,birt
 	ret := m.DB.LogMode(true).Exec(sql)
 	return ret
 }
+func (m *MysqlClient)UpdateUserProfileExp(table string,userId int64,exp float64) *gorm.DB{
+	sql := fmt.Sprintf("UPDATE `%s` set `exp`= `exp`+%0.0f,`level`= TRUNCATE(`exp`/1000,0) + 1 where `uid`= %d",table,exp,userId)
+	ret := m.DB.LogMode(true).Exec(sql)
+	return ret
+}
 //用户会员
 func (m *MysqlClient) GetUserSuperInfo(table string,uid uint64,user interface{}) *gorm.DB{
 	ret := m.DB.Table(table).LogMode(true).Where("uid=?",uid).First(user)
@@ -297,6 +309,7 @@ func (m *MysqlClient) InsertUserSuperInfo(table string,uid uint64,StartTime int6
 	ret := m.DB.LogMode(true).Exec(sql)
 	return ret
 }
+
 //func (m *MysqlClient) Ping() {
 //	ret := m.DB.Table("userprofile")
 //}
